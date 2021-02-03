@@ -1,9 +1,10 @@
+
+// *********************
+// Put these two lines at the very top of you 'index.js' file (or whatever you'd like to name it).
+// This is where we'll import the external data and store them into variables for this file
+//***********************************
 import fisheries_point from './data/fisheries_point.js';
 import fisheries_polyline from './data/fisheries_polyline.js'
-
-
-console.log(fisheries_point);
-console.log(fisheries_polyline);
 
 let checkboxStates = [];
 
@@ -22,15 +23,15 @@ var basemap = L.tileLayer('https://api.maptiler.com/maps/uk-openzoomstack-light/
   crossOrigin: true
 }).addTo(map);
 
-const search = new GeoSearch.GeoSearchControl({
-  provider: new GeoSearch.OpenStreetMapProvider(),
-  animateZoom: true,
-  searchLabel: 'Search by location',
-  updateMap: true,
-  style: 'bar',
-  autoClose: true,
-});
-map.addControl(search);
+// const search = new GeoSearch.GeoSearchControl({
+//   provider: new GeoSearch.OpenStreetMapProvider(),
+//   animateZoom: true,
+//   searchLabel: 'Search by location',
+//   updateMap: true,
+//   style: 'bar',
+//   autoClose: true,
+// });
+// map.addControl(search);
 
 L.control.zoom({
   position: 'topright'
@@ -43,7 +44,7 @@ const lakes = L.geoJSON(null, {
     };
   },
   filter: (feature) => {
-    if (checkboxStates.length == 0) return false;
+    if (checkboxStates.length == 0) return true;
     return checkboxStates.every(function(element) {
       return feature.properties[element.name];
     });
@@ -55,7 +56,7 @@ const lakes = L.geoJSON(null, {
 
 const rivers = L.geoJSON(null, {
   filter: (feature) => {
-    if (checkboxStates.length == 0) return false;
+    if (checkboxStates.length == 0) return true;
     return checkboxStates.every(function(element) {
       return feature.properties[element.name];
     });
@@ -78,18 +79,59 @@ function updateCheckboxStates() {
   }
 }
 
-for (let input of document.querySelectorAll('input')) {
-  //Listen to 'change' event of all inputs
-  input.onchange = (e) => {
+// for (let input of document.querySelectorAll('input')) {
+//   //Listen to 'change' event of all inputs
+//   input.onchange = (e) => {
+//     lakes.clearLayers();
+//     rivers.clearLayers();
+//     updateCheckboxStates();
+//     lakes.addData(fisheries_point);
+//     rivers.addData(fisheries_polyline);
+//   }
+// }
+
+//this is the filtering logic - whenever you click 'filter', it reads over all chekced boxes and removes then re-adds the newly filtered data to the screen
+document.querySelector('.filterBtn').addEventListener('click', () => {
     lakes.clearLayers();
     rivers.clearLayers();
     updateCheckboxStates();
     lakes.addData(fisheries_point);
     rivers.addData(fisheries_polyline);
-  }
-}
+})
+
 
 /****** INITT ******/
 updateCheckboxStates()
 lakes.addData(fisheries_point);
 rivers.addData(fisheries_polyline);
+
+//NOW setup the filter checkboxes and their states
+//these variables hold the state of whether they're expanded or not
+//first is species, then facilities, then tickets.  To add more filters, just add more 'false's
+const checkState = [false, false, false]
+
+//now variables to hold the expanding objects
+var checkBoxes = document.querySelectorAll('.inputContainer')
+  
+function showCheckboxes(idx) { 
+    if (checkState[idx]) { 
+        checkBoxes[idx].style.display = "none"; 
+        checkState[idx] = false; 
+    } else { 
+        checkBoxes[idx].style.display = "flex"; 
+        checkState[idx] = true; 
+    } 
+} 
+
+//add event handlers for clicking on the filtering buttons (the individual checkbox)
+document.querySelectorAll('.overSelect').forEach((box, idx) => {
+  box.addEventListener('click', () => showCheckboxes(idx))
+});
+
+
+/****** INITT ******/
+updateCheckboxStates()
+lakes.addData(fisheries_point);
+rivers.addData(fisheries_polyline);
+
+
