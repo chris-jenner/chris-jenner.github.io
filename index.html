@@ -13,10 +13,7 @@
     <script src="./images/fisheries_50px.png"></script>
     <script src="./images/tackleshop_50px.png"></script>
     <link rel="stylesheet" href="//unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css" type="text/css">
-  <script src="//unpkg.com/leaflet-gesture-handling"></script>
-
-    <style>
-    </style>
+    <script src="//unpkg.com/leaflet-gesture-handling"></script>
   </head>
 
   <body>
@@ -34,18 +31,20 @@
           justify-content: space-around;
       }
 
-      /* be sure to set your own font size here! */
-      .filterContainer p {
-          margin: 0;
-          font-size: 120%;
-          font-weight: bold;
-          padding-bottom: 10px;
-          padding-left: 10px;
+      .filterContainer.mobile {
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          margin: 5% 0;
       }
 
       .filterBtnCont {
           display: flex;
           align-items: center;
+      }
+
+      .filterBtnCont.mobile {
+        margin: 10px 0;
       }
 
       /* THIS IS WHERE YOU'LL STYLE THE 'FILTER' BUTTON ITSELF - THE FAR RIGHT BUTTON YOU ACTUALLY CLICK TO GET THE FILTERED RESULTS.  THE CLASSES FOR STYLING THE OTHER FILTERED BUTTONS ARE BELOW */
@@ -56,7 +55,7 @@
           /* background-color: #E76F51; */
           background-color: white;
           /* color: white; */
-          padding: 10px 50px;
+          padding: 5px 50px;
           font-weight: bold;
           font-family: 'Rubik', sans-serif !important;
           transition: all 0.25s;
@@ -83,6 +82,10 @@
           z-index: -1;
           flex-direction: column;
           user-select: none;
+      }
+
+      .inputContainer.mobile {
+
       }
 
       .input {
@@ -134,11 +137,16 @@
           font-family: 'Rubik', sans-serif !important;
       }
 
+      .selectBox.mobile {
+        margin: 10px 0;
+      }
+
       /* this is the actual element that is the filter button for the individual filtering options like species, facilities and ticket type.  You can chagne color, font size, etc. here */
       .selectBox select { 
           width: 100%; 
           font-weight: bold; 
           border-radius: 15px;
+          background-color: white;
           padding: 5px;
           border: none;
           cursor: pointer;
@@ -175,9 +183,6 @@
     <div class='filterContainer'>
       <!-- for the fish selectors first -->
       <div class='fishContainer'>
-        <p>
-          Species:
-        </p>
         <div class='selectBox'>
           <select class='SpeciesSelect'>
             <option>Species</option>
@@ -290,9 +295,6 @@
       </div>
       <!-- this holds the different facilities selectors -->
       <div class='facilitiesContainer'>
-        <p>
-          Facilities:
-        </p>
         <div class='selectBox'>
           <select class='facilitiesSelect'>
             <option>Facilities</option>
@@ -344,9 +346,6 @@
       </div>
       <!-- this holds the different ticket type selectors -->
       <div class='ticketContainer'>
-        <p>
-          Ticket Type:
-        </p>
         <div class='selectBox'>
           <select class='ticketSelect'>
             <option>Ticket Type</option>
