@@ -32,15 +32,15 @@ var basemap = L.tileLayer('https://api.maptiler.com/maps/uk-openzoomstack-light/
   crossOrigin: true
 }).addTo(map);
 
-// const search = new GeoSearch.GeoSearchControl({
-//   provider: new GeoSearch.OpenStreetMapProvider(),
-//   animateZoom: true,
-//   searchLabel: 'Search by location',
-//   updateMap: true,
-//   style: 'bar',
-//   autoClose: true,
-// });
-// map.addControl(search);
+const search = new GeoSearch.GeoSearchControl({
+  provider: new GeoSearch.OpenStreetMapProvider(),
+  animateZoom: true,
+  searchLabel: 'Search by location',
+  updateMap: true,
+  style: 'bar',
+  autoClose: true,
+});
+map.addControl(search);
 
 L.control.zoom({
   position: 'topright'
@@ -122,15 +122,15 @@ var selects = document.querySelectorAll('.selectBox');
   
 //this function actually expands/unshows the drop down boxes with the checkbox options beneath each filtering button
 function showCheckboxes(idx) {
-    hideCheckBoxes();
     if (checkState[idx]) { 
         checkBoxes[idx].style.display = "none"; 
         checkState[idx] = false;
         selects[idx].style.zIndex = 'auto' 
     } else { 
+        hideCheckBoxes();
         checkBoxes[idx].style.display = "flex";
         checkState[idx] = true;
-        selects[idx].style.zIndex = 500; 
+        selects[idx].style.zIndex = 1001; 
     } 
 }
 
@@ -162,6 +162,8 @@ document.querySelector('.filterContainer').addEventListener('click', () => {
     hideCheckBoxes();
   }
 })
+
+search.getContainer().onclick = e => { e.stopPropagation(); };
 
 
 /****** INITT ******/

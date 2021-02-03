@@ -6,8 +6,8 @@
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet-geosearch@3.0.4/dist/geosearch.css" />
-    <script src="https://unpkg.com/leaflet-geosearch@3.0.4/dist/geosearch.umd.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-geosearch@3.2.1/dist/geosearch.css" />
+    <script src="https://unpkg.com/leaflet-geosearch@3.2.1/dist/geosearch.umd.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
     <script src='./index.js' type="module"></script>
     <script src="./images/fisheries_50px.png"></script>
@@ -31,31 +31,22 @@
           justify-content: space-around;
       }
 
-      .filterContainer.mobile {
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          margin: 5% 0;
-      }
-
       .filterBtnCont {
           display: flex;
           align-items: center;
       }
 
-      .filterBtnCont.mobile {
-        margin: 10px 0;
-      }
 
       /* THIS IS WHERE YOU'LL STYLE THE 'FILTER' BUTTON ITSELF - THE FAR RIGHT BUTTON YOU ACTUALLY CLICK TO GET THE FILTERED RESULTS.  THE CLASSES FOR STYLING THE OTHER FILTERED BUTTONS ARE BELOW */
       /* If you liked the red filter button, uncomment the background-color and color styles below */
       .filterBtn {
-          border-radius: 15px;
+          border-radius: 25px;
           border: none;
           /* background-color: #E76F51; */
           background-color: white;
           /* color: white; */
-          padding: 5px 50px;
+          width: 100px;
+          padding: 10px 30px 10px 30px;
           font-weight: bold;
           font-family: 'Rubik', sans-serif !important;
           transition: all 0.25s;
@@ -82,10 +73,6 @@
           z-index: -1;
           flex-direction: column;
           user-select: none;
-      }
-
-      .inputContainer.mobile {
-
       }
 
       .input {
@@ -137,17 +124,13 @@
           font-family: 'Rubik', sans-serif !important;
       }
 
-      .selectBox.mobile {
-        margin: 10px 0;
-      }
-
       /* this is the actual element that is the filter button for the individual filtering options like species, facilities and ticket type.  You can chagne color, font size, etc. here */
       .selectBox select { 
           width: 100%; 
           font-weight: bold; 
-          border-radius: 15px;
+          border-radius: 25px;
           background-color: white;
-          padding: 5px;
+          padding: 10px 0 10px 30px;
           border: none;
           cursor: pointer;
       } 
@@ -160,6 +143,25 @@
           bottom: 0;
           cursor: pointer; 
       } 
+
+      /*MOBILE HERE
+      */
+      @media only screen and (max-width: 768px) {
+        .filterContainer {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 5% 0;
+        }
+
+        .filterBtnCont {
+          margin: 10px 0;
+        }
+
+        .selectBox {
+          margin: 10px 0;
+        }
+      }
 
       /* //ADD THESE BACK IN IF YOU WANT THE COLORED BUTTONS */
       /* //YOU CAN ALSO UNCOMMENT THESE TO STYLE THE INDIVIDAUL FILTERING BUTTONS HOWEVER YOU WANT */
@@ -181,6 +183,33 @@
     </style>
 
     <div class='filterContainer'>
+      <!-- fishery type first -->
+      <div class='fisheryContainer'>
+        <div class='selectBox'>
+          <select class='fisherSelect'>
+            <option>Fishery Type</option>
+          </select>
+          <div class='overSelect'></div>
+          <div class='fisheryInputContainer inputContainer'>
+            <div class="input" id="coarseSelector">
+              <input type="checkbox" class="coarse_fishery" name="coarse_fishery">
+              <label for="coarse_fishery">Coarse Fishery</label>
+            </div>
+            <div class="input" id="carpFisherySelector">
+              <input type="checkbox" class="carp_fishery" name="carp_fishery">
+              <label for="carp_fishery">Carp Fishery</label>
+            </div>
+            <div class="input" id="gameSelector">
+              <input type="checkbox" class="game_fishery" name="game_fishery">
+              <label for="game_fishery">Game Fishery</label>
+            </div>
+            <div class="input" id="seaFisherySelector">
+              <input type="checkbox" class="sea_fishery" name="sea_fishery">
+              <label for="sea_fishery">Sea Fishery</label>
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- for the fish selectors first -->
       <div class='fishContainer'>
         <div class='selectBox'>
@@ -291,7 +320,6 @@
   
           </div>
         </div>
-        
       </div>
       <!-- this holds the different facilities selectors -->
       <div class='facilitiesContainer'>
