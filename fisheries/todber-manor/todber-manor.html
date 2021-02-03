@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-geosearch@3.0.4/dist/geosearch.css" />
+    <script src="https://unpkg.com/leaflet-geosearch@3.0.4/dist/geosearch.umd.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href='./index.css'>
+    <link rel="stylesheet" href="dist/leaflet-gesture-handling.css" type="text/css">
+    <script src="dist/leaflet-gesture-handling.js"></script>
+
+    <style>
+
+        #map {
+  			padding:0px;
+  			margin:0px;
+  			height:900px;
+  			width:100%;
+  		}
+  	</style>
+  </head>
+  <body>
+
+    <style>
+      body {
+        font-family: 'Rubik';
+        font-size: 12px;
+      }
+    </style>
+
+</div>
+
+
+    <div id="map">
+    </div>
+    <body onload="init()">
+      <script>
+      var map = L.map("map", {
+        center: [50.982749 , -2.2832465],
+        zoom: 17,
+        zoomControl: false,
+        gestureHandling: true
+        });
+
+      var lakeicon = L.icon({
+        iconUrl: 'images/fisheries_50px.png',
+        iconSize: [40, 49],
+        iconAnchor: [20,20],
+        popupAnchor: [3,-20]
+        });
+
+      var basemap = L.tileLayer('https://api.maptiler.com/maps/uk-openzoomstack-light/{z}/{x}/{y}.png?key=JRDKWZ623VwZMdOklau8',{
+        tileSize: 512,
+        zoomOffset: -1,
+        minZoom: 8,
+        attribution: "\u003ca href=\"https://www.maptiler.com/copyright/\" target=\"_blank\"\u003e\u0026copy; MapTiler\u003c/a\u003e, Contains OS data \u00a9 Crown copyright and database right 2021",
+        crossOrigin: true
+        }).addTo(map);
+
+        L.control.zoom({ position: 'topright' }).addTo(map);
+
+        const lakes_polygon = {
+        "type": "FeatureCollection",
+        "name": "lakes",
+        "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+        "features": [
+        { "type": "Feature", "properties": { "gid": 1, "name": "firs lake", "type": "coarse", "link": "thefishingindex.com\/todber-manor\/", "barbel": false, "bream": true, "brown_trout": false, "carp": true, "catfish": false, "chub": false, "crucian_carp": false, "dace": false, "eel": false, "grass_carp": false, "grayling": false, "gudgeon": false, "perch": true, "pike": false, "rainbow_trout": false, "roach": true, "rudd": true, "ruffe": false, "tench": true, "zander": false, "accomodation": true, "cafe": true, "camping": false, "electric_points": false, "disabled_pegs": false, "fishing_lodges": false, "tackle_shop": true, "toilets": false, "parking": false, "pet_friendly": false, "day_ticket": true, "free_fishing": false, "membership": false, "night_fishing": false, "fishery_url": "https:\/\/todbermanor.co.uk\/" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ -2.283307664656628, 50.981912849079833 ], [ -2.283339951359587, 50.981878971400128 ], [ -2.283337559751951, 50.981843588019409 ], [ -2.283337559751952, 50.981799923384735 ], [ -2.283345930378635, 50.981777338212751 ], [ -2.283323210106191, 50.981757764388135 ], [ -2.283296902422308, 50.981750235991861 ], [ -2.283262224111739, 50.98174797747275 ], [ -2.282721720788353, 50.981750235991854 ], [ -2.282641601932896, 50.981739696235039 ], [ -2.282573441115564, 50.981739696235032 ], [ -2.282518434140186, 50.981748730312461 ], [ -2.282487343241033, 50.981768304140878 ], [ -2.282463427164784, 50.981811215966594 ], [ -2.282459839753343, 50.981880477075315 ], [ -2.282482560025787, 50.981903062197127 ], [ -2.282523217355431, 50.98192037744974 ], [ -2.282643993540531, 50.981936939859246 ], [ -2.282730091415037, 50.981931670002297 ], [ -2.2829022871641, 50.981920377449732 ], [ -2.283118727654196, 50.981913601916887 ], [ -2.283307664656628, 50.981912849079833 ] ] ] } },
+        { "type": "Feature", "properties": { "gid": 2, "name": "hill view lake", "type": "coarse", "link": "thefishingindex.com\/todber-manor\/", "barbel": false, "bream": true, "brown_trout": false, "carp": true, "catfish": false, "chub": false, "crucian_carp": false, "dace": false, "eel": false, "grass_carp": false, "grayling": false, "gudgeon": false, "perch": false, "pike": false, "rainbow_trout": false, "roach": false, "rudd": false, "ruffe": false, "tench": true, "zander": false, "accomodation": true, "cafe": true, "camping": false, "electric_points": false, "disabled_pegs": false, "fishing_lodges": false, "tackle_shop": true, "toilets": false, "parking": true, "pet_friendly": false, "day_ticket": true, "free_fishing": false, "membership": false, "night_fishing": false, "fishery_url": "https:\/\/todbermanor.co.uk\/" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ -2.282800643840003, 50.983289014814218 ], [ -2.282910657790785, 50.983228789596247 ], [ -2.282941748689914, 50.983183620631479 ], [ -2.282929790651789, 50.983090271298387 ], [ -2.282948923512794, 50.9830195063563 ], [ -2.282925007436544, 50.982923145410638 ], [ -2.282881958499266, 50.982834312486666 ], [ -2.282865217245896, 50.982718377737015 ], [ -2.282910657790784, 50.982465428187389 ], [ -2.282910657790784, 50.98240520190101 ], [ -2.28289869975266, 50.982307334019005 ], [ -2.282834126346767, 50.982216994252518 ], [ -2.282750420079872, 50.982167307306014 ], [ -2.282645189344336, 50.982129665644457 ], [ -2.282391678936012, 50.98208298994178 ], [ -2.282166867819206, 50.982104069297179 ], [ -2.282064028691306, 50.982114608971308 ], [ -2.281870308473628, 50.98215827331002 ], [ -2.281690937901711, 50.982210971595151 ], [ -2.281585707166201, 50.982281737769675 ], [ -2.281509175722159, 50.982391650975799 ], [ -2.281473301607786, 50.982641589626574 ], [ -2.281497217684036, 50.982749996333823 ], [ -2.281557007874683, 50.982813233462821 ], [ -2.281650280572069, 50.982843346351117 ], [ -2.281796168637247, 50.982831301198139 ], [ -2.281910965803272, 50.982816244752527 ], [ -2.282154909781082, 50.982807210882825 ], [ -2.282255357301374, 50.982780109263139 ], [ -2.282374937682642, 50.982710849496506 ], [ -2.282396462151282, 50.982742468098451 ], [ -2.282379720897888, 50.982793660074947 ], [ -2.282394070543647, 50.982870447933884 ], [ -2.282472993595298, 50.982962292068933 ], [ -2.282444294303779, 50.98296229206894 ], [ -2.282410811797016, 50.982954763867973 ], [ -2.282358196429274, 50.982951752587248 ], [ -2.282197958718336, 50.98295928078872 ], [ -2.282102294413315, 50.982963797708983 ], [ -2.282009021715929, 50.982984876664489 ], [ -2.281772252560999, 50.982992404860553 ], [ -2.281714853977986, 50.983021011994495 ], [ -2.281681371471223, 50.983075214936768 ], [ -2.281705287547471, 50.983136945988406 ], [ -2.281777035776243, 50.983191148795342 ], [ -2.281930098664277, 50.983231800859002 ], [ -2.28208316155231, 50.983248362800666 ], [ -2.282245790870858, 50.983255890954005 ], [ -2.282341455175878, 50.983252879692806 ], [ -2.282425161442776, 50.983299554219343 ], [ -2.282590182368959, 50.983313104879535 ], [ -2.282800643840003, 50.983289014814218 ] ], [ [ -2.282499301279182, 50.982531677012169 ], [ -2.282556699862195, 50.982513609160257 ], [ -2.282573441115564, 50.982463922531196 ], [ -2.282578224330808, 50.982427786767573 ], [ -2.282544741824071, 50.982388639658573 ], [ -2.282444294303779, 50.982346481196593 ], [ -2.282339063568269, 50.982320884968829 ], [ -2.282252965693738, 50.982347986856603 ], [ -2.28221469997173, 50.982396167951336 ], [ -2.282231441225099, 50.982426281110143 ], [ -2.28232710553012, 50.982429292424946 ], [ -2.282370154467398, 50.982432303739557 ], [ -2.282437119480899, 50.982483496058087 ], [ -2.282480168418178, 50.982533182666195 ], [ -2.282499301279182, 50.982531677012169 ] ], [ [ -2.282099902805705, 50.982510597850926 ], [ -2.282140560135323, 50.98247897909107 ], [ -2.282121427274319, 50.982453382936377 ], [ -2.282054462260816, 50.982450371623131 ], [ -2.281913357410908, 50.982420258479941 ], [ -2.281882266511779, 50.982441337682232 ], [ -2.281899007765148, 50.982503069576723 ], [ -2.2819779308168, 50.982497046956482 ], [ -2.282040112615057, 50.982524148741405 ], [ -2.282099902805705, 50.982510597850926 ] ] ] } },
+        { "type": "Feature", "properties": { "gid": 3, "name": "ash lake", "type": "coarse", "link": "thefishingindex.com\/todber-manor\/", "barbel": false, "bream": true, "brown_trout": false, "carp": true, "catfish": false, "chub": false, "crucian_carp": false, "dace": false, "eel": false, "grass_carp": false, "grayling": false, "gudgeon": false, "perch": false, "pike": false, "rainbow_trout": false, "roach": false, "rudd": false, "ruffe": false, "tench": true, "zander": false, "accomodation": true, "cafe": true, "camping": false, "electric_points": false, "disabled_pegs": false, "fishing_lodges": false, "tackle_shop": true, "toilets": false, "parking": true, "pet_friendly": false, "day_ticket": true, "free_fishing": false, "membership": false, "night_fishing": false, "fishery_url": "https:\/\/todbermanor.co.uk\/" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ -2.283604224002206, 50.983362790599791 ], [ -2.283699888307226, 50.983320633022387 ], [ -2.283742937244478, 50.983272452887078 ], [ -2.283704671522471, 50.983118878372053 ], [ -2.28360900721745, 50.982655140478819 ], [ -2.283537258988677, 50.982113103303753 ], [ -2.283455944329416, 50.982063416246056 ], [ -2.28337223806252, 50.982060404907514 ], [ -2.283233524820246, 50.98208600127888 ], [ -2.283161776591474, 50.982138699646043 ], [ -2.283173734629598, 50.982236567883511 ], [ -2.28324787446598, 50.982387133999872 ], [ -2.283300489833747, 50.982614487910226 ], [ -2.283336363948147, 50.983273958517067 ], [ -2.283362671632005, 50.983323644279189 ], [ -2.28346551075993, 50.983359779345534 ], [ -2.283604224002206, 50.983362790599791 ] ] ] } },
+        { "type": "Feature", "properties": { "gid": 4, "name": "homeground lake", "type": "coarse", "link": "thefishingindex.com\/todber-manor\/", "barbel": false, "bream": true, "brown_trout": false, "carp": true, "catfish": false, "chub": false, "crucian_carp": false, "dace": false, "eel": false, "grass_carp": false, "grayling": false, "gudgeon": false, "perch": false, "pike": false, "rainbow_trout": false, "roach": true, "rudd": true, "ruffe": false, "tench": true, "zander": false, "accomodation": true, "cafe": true, "camping": false, "electric_points": false, "disabled_pegs": false, "fishing_lodges": false, "tackle_shop": true, "toilets": false, "parking": true, "pet_friendly": false, "day_ticket": true, "free_fishing": false, "membership": false, "night_fishing": false, "fishery_url": "https:\/\/todbermanor.co.uk\/" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ -2.284223650377244, 50.984090002783795 ], [ -2.284312139859384, 50.984044834656949 ], [ -2.284355188796638, 50.983960520702617 ], [ -2.284154293756106, 50.983608207165176 ], [ -2.284029930159566, 50.98351485868583 ], [ -2.283785986181757, 50.983505824952069 ], [ -2.283465510759931, 50.983535937391125 ], [ -2.283405720569283, 50.983547982361266 ], [ -2.283235916427856, 50.983535937391125 ], [ -2.283104378008461, 50.983563038569557 ], [ -2.283046979425449, 50.983675959976168 ], [ -2.283101986400826, 50.984029778604906 ], [ -2.283183301060088, 50.984103553213266 ], [ -2.283278965365134, 50.984127642855917 ], [ -2.283594657571716, 50.984103553213274 ], [ -2.284223650377244, 50.984090002783795 ] ], [ [ -2.283906762366832, 50.983868678542379 ], [ -2.283940244873595, 50.98383179106623 ], [ -2.283893608524903, 50.983779094620886 ], [ -2.283890021113463, 50.983749735146816 ], [ -2.283858930214334, 50.983742207073561 ], [ -2.28380751065037, 50.983753499182988 ], [ -2.283790769397003, 50.983776836200462 ], [ -2.283751307871188, 50.983789633914732 ], [ -2.283654447762337, 50.983788128301477 ], [ -2.283652056154728, 50.983817487751267 ], [ -2.283684342857661, 50.983852116822035 ], [ -2.283826643511375, 50.983844588765379 ], [ -2.283851755391455, 50.983870936958347 ], [ -2.283906762366832, 50.983868678542379 ] ], [ [ -2.28351334291243, 50.983889757087034 ], [ -2.283557587653511, 50.983864914515543 ], [ -2.283551608634437, 50.983831038260284 ], [ -2.283544433811558, 50.983808454076382 ], [ -2.283487035228545, 50.983792645141122 ], [ -2.283455944329416, 50.983791139527966 ], [ -2.283430832449336, 50.983806948463744 ], [ -2.283416482803603, 50.983836307901619 ], [ -2.283434419860778, 50.983885993061911 ], [ -2.28351334291243, 50.983889757087034 ] ] ] } }
+        ]
+        }
+
+
+        const parking_point = {
+        "type": "FeatureCollection",
+        "name": "parking",
+        "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+        "features": [
+        { "type": "Feature", "properties": { "gid": 1, "name": "parking" }, "geometry": { "type": "Point", "coordinates": [ -2.284362363619518, 50.983444094390933 ] } },
+        { "type": "Feature", "properties": { "gid": 2, "name": "parking" }, "geometry": { "type": "Point", "coordinates": [ -2.282870000461141, 50.98360670154603 ] } },
+        { "type": "Feature", "properties": { "gid": 3, "name": "parking" }, "geometry": { "type": "Point", "coordinates": [ -2.281358504441761, 50.98261298225885 ] } },
+        { "type": "Feature", "properties": { "gid": 4, "name": "parking" }, "geometry": { "type": "Point", "coordinates": [ -2.283070895501698, 50.983049619110815 ] } },
+        { "type": "Feature", "properties": { "gid": 5, "name": "parking" }, "geometry": { "type": "Point", "coordinates": [ -2.283070895501698, 50.982625027468458 ] } },
+        { "type": "Feature", "properties": { "gid": 6, "name": "parking" }, "geometry": { "type": "Point", "coordinates": [ -2.284228433592489, 50.981730662155854 ] } },
+        { "type": "Feature", "properties": { "gid": 7, "name": "parking" }, "geometry": { "type": "Point", "coordinates": [ -2.283893608524902, 50.981411456895998 ] } }
+        ]
+        }
+
+        const path_line = {
+        "type": "FeatureCollection",
+        "name": "path",
+        "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+        "features": [
+        { "type": "Feature", "properties": { "gid": 1, "name": "path" }, "geometry": { "type": "LineString", "coordinates": [ [ -2.282823364112448, 50.983584870062941 ], [ -2.282854455011577, 50.983532173337316 ], [ -2.282935769670838, 50.983464420316473 ], [ -2.282952510924233, 50.983441835954217 ], [ -2.282627252287137, 50.983432802206238 ], [ -2.282313951688191, 50.983390644692435 ], [ -2.281976735012968, 50.983342464629757 ], [ -2.28173996585804, 50.983285250740408 ], [ -2.281591686185251, 50.983188890346334 ], [ -2.281503196703111, 50.982976595647408 ], [ -2.281414707220969, 50.982813986285301 ], [ -2.281362091853201, 50.982744726569209 ] ] } }
+        ]
+        }
+
+        const pegs_point ={
+        "type": "FeatureCollection",
+        "name": "pegs",
+        "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+        "features": [
+        { "type": "Feature", "properties": { "gid": 1, "peg_number": 28 }, "geometry": { "type": "Point", "coordinates": [ -2.283231133212611, 50.981760775746352 ] } },
+        { "type": "Feature", "properties": { "gid": 2, "peg_number": 29 }, "geometry": { "type": "Point", "coordinates": [ -2.283082853539822, 50.981759270067293 ] } },
+        { "type": "Feature", "properties": { "gid": 3, "peg_number": 30 }, "geometry": { "type": "Point", "coordinates": [ -2.282960881550918, 50.981759270067293 ] } },
+        { "type": "Feature", "properties": { "gid": 4, "peg_number": 31 }, "geometry": { "type": "Point", "coordinates": [ -2.282841301169648, 50.981760775746352 ] } },
+        { "type": "Feature", "properties": { "gid": 5, "peg_number": 32 }, "geometry": { "type": "Point", "coordinates": [ -2.282719329180742, 50.981756258709026 ] } },
+        { "type": "Feature", "properties": { "gid": 6, "peg_number": 33 }, "geometry": { "type": "Point", "coordinates": [ -2.282611706837572, 50.981753247350561 ] } },
+        { "type": "Feature", "properties": { "gid": 7, "peg_number": 34 }, "geometry": { "type": "Point", "coordinates": [ -2.282846084384893, 50.982215488588281 ] } },
+        { "type": "Feature", "properties": { "gid": 8, "peg_number": 35 }, "geometry": { "type": "Point", "coordinates": [ -2.282573441115564, 50.982113103303753 ] } },
+        { "type": "Feature", "properties": { "gid": 9, "peg_number": 36 }, "geometry": { "type": "Point", "coordinates": [ -2.282410811797016, 50.982096540957109 ] } },
+        { "type": "Feature", "properties": { "gid": 10, "peg_number": 37 }, "geometry": { "type": "Point", "coordinates": [ -2.282238616047979, 50.982102563629304 ] } },
+        { "type": "Feature", "properties": { "gid": 11, "peg_number": 38 }, "geometry": { "type": "Point", "coordinates": [ -2.282092727982826, 50.982126654310264 ] } },
+        { "type": "Feature", "properties": { "gid": 12, "peg_number": 39 }, "geometry": { "type": "Point", "coordinates": [ -2.281944448310036, 50.9821567676439 ] } },
+        { "type": "Feature", "properties": { "gid": 13, "peg_number": 40 }, "geometry": { "type": "Point", "coordinates": [ -2.281791385422003, 50.982198926278151 ] } },
+        { "type": "Feature", "properties": { "gid": 15, "peg_number": 42 }, "geometry": { "type": "Point", "coordinates": [ -2.281521133760309, 50.982481990402484 ] } },
+        { "type": "Feature", "properties": { "gid": 16, "peg_number": 43 }, "geometry": { "type": "Point", "coordinates": [ -2.281506784114549, 50.982603948349585 ] } },
+        { "type": "Feature", "properties": { "gid": 17, "peg_number": 44 }, "geometry": { "type": "Point", "coordinates": [ -2.281791385422003, 50.982858402787961 ] } },
+        { "type": "Feature", "properties": { "gid": 18, "peg_number": 45 }, "geometry": { "type": "Point", "coordinates": [ -2.281944448310036, 50.982831301198189 ] } },
+        { "type": "Feature", "properties": { "gid": 19, "peg_number": 46 }, "geometry": { "type": "Point", "coordinates": [ -2.282085553159944, 50.982823772975983 ] } },
+        { "type": "Feature", "properties": { "gid": 20, "peg_number": 47 }, "geometry": { "type": "Point", "coordinates": [ -2.282226658009854, 50.982807210882847 ] } },
+        { "type": "Feature", "properties": { "gid": 21, "peg_number": 48 }, "geometry": { "type": "Point", "coordinates": [ -2.282310364276751, 50.982783120555013 ] } },
+        { "type": "Feature", "properties": { "gid": 22, "peg_number": 49 }, "geometry": { "type": "Point", "coordinates": [ -2.282372546075008, 50.98295928078872 ] } },
+        { "type": "Feature", "properties": { "gid": 23, "peg_number": 50 }, "geometry": { "type": "Point", "coordinates": [ -2.282231441225099, 50.982960786428862 ] } },
+        { "type": "Feature", "properties": { "gid": 24, "peg_number": 51 }, "geometry": { "type": "Point", "coordinates": [ -2.282092727982824, 50.982978854106761 ] } },
+        { "type": "Feature", "properties": { "gid": 25, "peg_number": 52 }, "geometry": { "type": "Point", "coordinates": [ -2.28195640634816, 50.982993910499644 ] } },
+        { "type": "Feature", "properties": { "gid": 26, "peg_number": 53 }, "geometry": { "type": "Point", "coordinates": [ -2.281817693105887, 50.98300294433303 ] } },
+        { "type": "Feature", "properties": { "gid": 32, "peg_number": 59 }, "geometry": { "type": "Point", "coordinates": [ -2.282925007436544, 50.982541463762388 ] } },
+        { "type": "Feature", "properties": { "gid": 33, "peg_number": 60 }, "geometry": { "type": "Point", "coordinates": [ -2.282936965474668, 50.982416494335695 ] } },
+        { "type": "Feature", "properties": { "gid": 14, "peg_number": 41 }, "geometry": { "type": "Point", "coordinates": [ -2.281588098773811, 50.982322390629697 ] } },
+        { "type": "Feature", "properties": { "gid": 27, "peg_number": 54 }, "geometry": { "type": "Point", "coordinates": [ -2.282951315125187, 50.983124148075518 ] } },
+        { "type": "Feature", "properties": { "gid": 28, "peg_number": 55 }, "geometry": { "type": "Point", "coordinates": [ -2.282944140297523, 50.982927662334468 ] } },
+        { "type": "Feature", "properties": { "gid": 29, "peg_number": 56 }, "geometry": { "type": "Point", "coordinates": [ -2.282909461986955, 50.982826031442777 ] } },
+        { "type": "Feature", "properties": { "gid": 30, "peg_number": 57 }, "geometry": { "type": "Point", "coordinates": [ -2.282899895556465, 50.982743220922067 ] } },
+        { "type": "Feature", "properties": { "gid": 31, "peg_number": 58 }, "geometry": { "type": "Point", "coordinates": [ -2.282907070379345, 50.982637825500298 ] } },
+        { "type": "Feature", "properties": { "gid": 34, "peg_number": 61 }, "geometry": { "type": "Point", "coordinates": [ -2.2825853990844, 50.983319880253369 ] } },
+        { "type": "Feature", "properties": { "gid": 35, "peg_number": 62 }, "geometry": { "type": "Point", "coordinates": [ -2.283171343025176, 50.982181611130493 ] } },
+        { "type": "Feature", "properties": { "gid": 36, "peg_number": 63 }, "geometry": { "type": "Point", "coordinates": [ -2.283185692673048, 50.982261411329674 ] } },
+        { "type": "Feature", "properties": { "gid": 37, "peg_number": 64 }, "geometry": { "type": "Point", "coordinates": [ -2.283228741598687, 50.982344222705976 ] } },
+        { "type": "Feature", "properties": { "gid": 38, "peg_number": 65 }, "geometry": { "type": "Point", "coordinates": [ -2.283259832513131, 50.982431550914434 ] } },
+        { "type": "Feature", "properties": { "gid": 39, "peg_number": 66 }, "geometry": { "type": "Point", "coordinates": [ -2.283286140189138, 50.982523395904863 ] } },
+        { "type": "Feature", "properties": { "gid": 40, "peg_number": 67 }, "geometry": { "type": "Point", "coordinates": [ -2.283300489836313, 50.982603195519154 ] } },
+        { "type": "Feature", "properties": { "gid": 41, "peg_number": 68 }, "geometry": { "type": "Point", "coordinates": [ -2.283310056254669, 50.982696545834962 ] } },
+        { "type": "Feature", "properties": { "gid": 42, "peg_number": 69 }, "geometry": { "type": "Point", "coordinates": [ -2.283307664658953, 50.982783873370657 ] } },
+        { "type": "Feature", "properties": { "gid": 43, "peg_number": 70 }, "geometry": { "type": "Point", "coordinates": [ -2.283312447866653, 50.982875717680422 ] } },
+        { "type": "Feature", "properties": { "gid": 44, "peg_number": 71 }, "geometry": { "type": "Point", "coordinates": [ -2.283314839482506, 50.982958527967028 ] } },
+        { "type": "Feature", "properties": { "gid": 45, "peg_number": 72 }, "geometry": { "type": "Point", "coordinates": [ -2.283326797508354, 50.983047360649117 ] } },
+        { "type": "Feature", "properties": { "gid": 46, "peg_number": 73 }, "geometry": { "type": "Point", "coordinates": [ -2.283331580722959, 50.983122642455768 ] } },
+        { "type": "Feature", "properties": { "gid": 47, "peg_number": 74 }, "geometry": { "type": "Point", "coordinates": [ -2.283333972344169, 50.983209969200423 ] } },
+        { "type": "Feature", "properties": { "gid": 48, "peg_number": 75 }, "geometry": { "type": "Point", "coordinates": [ -2.283362671627916, 50.983294284477374 ] } },
+        { "type": "Feature", "properties": { "gid": 49, "peg_number": 76 }, "geometry": { "type": "Point", "coordinates": [ -2.283276573764822, 50.983553252035613 ] } },
+        { "type": "Feature", "properties": { "gid": 50, "peg_number": 77 }, "geometry": { "type": "Point", "coordinates": [ -2.283432028247352, 50.983554757659626 ] } },
+        { "type": "Feature", "properties": { "gid": 51, "peg_number": 78 }, "geometry": { "type": "Point", "coordinates": [ -2.283563566674556, 50.983532173335007 ] } },
+        { "type": "Feature", "properties": { "gid": 52, "peg_number": 79 }, "geometry": { "type": "Point", "coordinates": [ -2.283704671516183, 50.983518622750466 ] } },
+        { "type": "Feature", "properties": { "gid": 53, "peg_number": 80 }, "geometry": { "type": "Point", "coordinates": [ -2.283843384758781, 50.983518622741734 ] } },
+        { "type": "Feature", "properties": { "gid": 54, "peg_number": 81 }, "geometry": { "type": "Point", "coordinates": [ -2.283972531618129, 50.983520128339926 ] } },
+        { "type": "Feature", "properties": { "gid": 55, "peg_number": 82 }, "geometry": { "type": "Point", "coordinates": [ -2.284252349629978, 50.983762532872348 ] } },
+        { "type": "Feature", "properties": { "gid": 56, "peg_number": 83 }, "geometry": { "type": "Point", "coordinates": [ -2.284202125897225, 50.984096777991127 ] } },
+        { "type": "Feature", "properties": { "gid": 57, "peg_number": 84 }, "geometry": { "type": "Point", "coordinates": [ -2.284044279816336, 50.984098283598527 ] } },
+        { "type": "Feature", "properties": { "gid": 58, "peg_number": 85 }, "geometry": { "type": "Point", "coordinates": [ -2.283905566564863, 50.984104306011183 ] } },
+        { "type": "Feature", "properties": { "gid": 59, "peg_number": 86 }, "geometry": { "type": "Point", "coordinates": [ -2.283766853319322, 50.984102800416579 ] } },
+        { "type": "Feature", "properties": { "gid": 60, "peg_number": 87 }, "geometry": { "type": "Point", "coordinates": [ -2.283630531683762, 50.984107317220349 ] } },
+        { "type": "Feature", "properties": { "gid": 61, "peg_number": 88 }, "geometry": { "type": "Point", "coordinates": [ -2.283491818445902, 50.984119362041824 ] } },
+        { "type": "Feature", "properties": { "gid": 62, "peg_number": 89 }, "geometry": { "type": "Point", "coordinates": [ -2.28336267162949, 50.984128395622172 ] } },
+        { "type": "Feature", "properties": { "gid": 63, "peg_number": 90 }, "geometry": { "type": "Point", "coordinates": [ -2.283094213676032, 50.983861150488416 ] } }
+        ]
+        }
+
+
+        const road_line = {
+        "type": "FeatureCollection",
+        "name": "road",
+        "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+        "features": [
+        { "type": "Feature", "properties": { "gid": 1, "name": "road" }, "geometry": { "type": "LineString", "coordinates": [ [ -2.2836030281984, 50.981351982088526 ], [ -2.28359585337552, 50.981424255262326 ], [ -2.283677168034781, 50.981565789901808 ], [ -2.283784790377926, 50.981627522960487 ], [ -2.283887629505828, 50.981657636617847 ], [ -2.284114832230268, 50.98170581842902 ], [ -2.284270286725937, 50.981758517227732 ], [ -2.28442813282924, 50.9819060735459 ] ] } },
+        { "type": "Feature", "properties": { "gid": 2, "name": "road" }, "geometry": { "type": "LineString", "coordinates": [ [ -2.283784790377926, 50.981627522960487 ], [ -2.283617377844134, 50.981760022906819 ], [ -2.283509755500988, 50.981859397618415 ], [ -2.283392566727329, 50.98194672673484 ], [ -2.283287335991818, 50.981982862872883 ], [ -2.283115140242756, 50.981981357201029 ], [ -2.282971643785237, 50.982023515994577 ], [ -2.282902287164075, 50.982059652072856 ], [ -2.282878371087826, 50.982083742776091 ], [ -2.282710958554033, 50.982065674749855 ], [ -2.28244070689234, 50.982017493312135 ], [ -2.282208720952654, 50.98201147062889 ], [ -2.281976735012969, 50.982052123725545 ], [ -2.281704091743666, 50.98212138447488 ], [ -2.281529504386994, 50.982196667780862 ], [ -2.281441014904853, 50.982279479276443 ], [ -2.281374049891326, 50.982389392487917 ], [ -2.281357308637956, 50.982509845023571 ] ] } },
+        { "type": "Feature", "properties": { "gid": 3, "name": "road" }, "geometry": { "type": "LineString", "coordinates": [ [ -2.282878371087826, 50.982083742776091 ], [ -2.282899895556465, 50.982124395809457 ], [ -2.282997951469121, 50.982207207433959 ], [ -2.283062524875013, 50.982326154781603 ], [ -2.283070895501698, 50.982625027468458 ], [ -2.283107965419902, 50.982981112566023 ], [ -2.283115140242756, 50.983158777682171 ], [ -2.283119923458025, 50.983309340807679 ], [ -2.283045783621618, 50.983471948434769 ], [ -2.282916636809834, 50.983524645228769 ], [ -2.282870000461141, 50.98360670154603 ] ] } },
+        { "type": "Feature", "properties": { "gid": 4, "name": "road" }, "geometry": { "type": "LineString", "coordinates": [ [ -2.283119923458025, 50.983309340807679 ], [ -2.283282552776549, 50.98338462218733 ], [ -2.283433224056972, 50.983420757206197 ], [ -2.283617377844134, 50.983414734705001 ], [ -2.283803923238932, 50.983395161570748 ], [ -2.283980902203238, 50.983395161570748 ], [ -2.284086132938775, 50.983410217828606 ], [ -2.284227237788684, 50.983449364076186 ] ] } }
+        ]
+        }
+
+
+        const tackleshop_point = {
+        "type": "FeatureCollection",
+        "name": "tackleshop",
+        "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+        "features": [
+        { "type": "Feature", "properties": { "gid": 1, "name": "tackle shop" }, "geometry": { "type": "Point", "coordinates": [ -2.28396057353843, 50.981190872733649 ] } }
+        ]
+        }
+
+        var geojsonMarkerOptions2 = {
+            radius: 8,
+            fillColor: "blue",
+            color: "#000",
+            weight: 1,
+            opacity: 1,
+            fillOpacity: 0.6
+        };
+
+        const lakes = L.geoJSON(lakes_polygon, {
+          style: geojsonMarkerOptions2
+          }).bindPopup(function(layer) {
+        /************** new as of 1/28  */
+          let cap_name = layer.feature.properties.name.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+          return `<p>${cap_name}</p><a href="https://${layer.feature.properties.link}" target="_blank">View<a>`
+          /******/;
+        }).addTo(map);
+
+        var geojsonMarkerOptions = {
+            radius: 8,
+            fillColor: "#ff7800",
+            color: "#000",
+            weight: 1,
+            opacity: 1,
+            fillOpacity: 0.8
+        };
+
+        const parking = L.geoJSON(parking_point, {
+          pointToLayer: function (feature, latlng) {
+                return L.circleMarker(latlng, geojsonMarkerOptions);
+            }
+          }).bindPopup(function(layer) {
+        /************** new as of 1/28  */
+          let cap_name = layer.feature.properties.name.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+          return `<p>${cap_name}</p><a href="https://${layer.feature.properties.link}" target="_blank">View<a>`
+          /******/;
+        }).addTo(map);
+
+        var pathstyling = {
+            stroke: true,
+            dash: true,
+            fillColor: "blue",
+            color: "#000",
+            weight: 5,
+            opacity: 1,
+            fillOpacity: 0.6
+        };
+
+const path = L.geoJSON(path_line, {
+  style: pathstyling
+  }).bindPopup(function(layer) {
+/************** new as of 1/28  */
+  let cap_name = layer.feature.properties.name.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+  return `<p>${cap_name}</p><a href="https://${layer.feature.properties.link}" target="_blank">View<a>`
+  /******/;
+}).addTo(map);
+
+const pegs = L.geoJSON(pegs_point, {
+  }).bindPopup(function(layer) {
+/************** new as of 1/28  */
+  let cap_name = layer.feature.properties.name.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+  return `<p>${cap_name}</p><a href="https://${layer.feature.properties.link}" target="_blank">View<a>`
+  /******/;
+}).addTo(map);
+
+const road = L.geoJSON(road_line, {
+  }).bindPopup(function(layer) {
+/************** new as of 1/28  */
+  let cap_name = layer.feature.properties.name.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+  return `<p>${cap_name}</p><a href="https://${layer.feature.properties.link}" target="_blank">View<a>`
+  /******/;
+}).addTo(map);
+
+const tackleshop = L.geoJSON(tackleshop_point, {
+  }).bindPopup(function(layer) {
+/************** new as of 1/28  */
+  let cap_name = layer.feature.properties.name.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+  return `<p>${cap_name}</p><a href="https://${layer.feature.properties.link}" target="_blank">View<a>`
+  /******/;
+}).addTo(map);
+
+      </script>
+  </body>
+</html>
