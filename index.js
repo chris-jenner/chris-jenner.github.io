@@ -181,3 +181,18 @@ rivers.addData(fisheries_polyline);
 		map.on('exitFullscreen', function(){
 			if(window.console) window.console.log('exitFullscreen');
 		});
+
+    function onLocationFound(e) {
+       var radius = e.accuracy / 4;
+
+       L.circle(e.latlng, radius).addTo(map);
+       }
+
+       function onLocationError(e) {
+         alert(e.message);
+       }
+
+       map.on('locationfound', onLocationFound);
+       map.on('locationerror', onLocationError);
+
+       map.locate({setView: true, maxZoom: 12, timeout: 10000});
