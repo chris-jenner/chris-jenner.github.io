@@ -87,12 +87,7 @@ var holidayicon = L.icon({
     pointToLayer: function(geoJsonPoint, latlng) {
       return L.marker(latlng, {icon: shopicon});
        },
-    style: function(feature) {
-      return {
-        color: feature.properties.color
-      };
-    },
-  }).bindPopup(function(layer) {
+    }).bindPopup(function(layer) {
     let cap_name = layer.feature.properties.name.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
     return `<p>${cap_name}</p><a href="https://${layer.feature.properties.link}" target="_blank">View<a>`;
   }).addTo(map);
