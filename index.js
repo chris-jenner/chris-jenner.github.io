@@ -8,6 +8,15 @@ import fisheries_polyline from './data/fisheries_polyline.js'
 
 let checkboxStates = [];
 
+/*SECTION FOR DETERMINING AND UPDATING MOBILE STYLES UP TOP*/
+var wwidth = window.matchMedia('(max-width: 768px)');
+
+if (wwidth.matches) {
+  document.querySelector('.filterContainer').classList.add('mobile');
+  document.querySelector('.filterBtnCont').classList.add('mobile');
+  document.querySelectorAll('.selectBox').forEach(ele => ele.classList.add('mobile'));
+}
+
 var map = L.map('map', {
   center: [51.396145, -2.5015016],
   zoom: 11,
@@ -23,15 +32,15 @@ var basemap = L.tileLayer('https://api.maptiler.com/maps/uk-openzoomstack-light/
   crossOrigin: true
 }).addTo(map);
 
-// const search = new GeoSearch.GeoSearchControl({
-//   provider: new GeoSearch.OpenStreetMapProvider(),
-//   animateZoom: true,
-//   searchLabel: 'Search by location',
-//   updateMap: true,
-//   style: 'bar',
-//   autoClose: true,
-// });
-// map.addControl(search);
+const search = new GeoSearch.GeoSearchControl({
+  provider: new GeoSearch.OpenStreetMapProvider(),
+  animateZoom: true,
+  searchLabel: 'Search by location',
+  updateMap: true,
+  style: 'bar',
+  autoClose: true,
+});
+map.addControl(search);
 
 L.control.zoom({
   position: 'topright'
@@ -91,7 +100,8 @@ function updateCheckboxStates() {
 // }
 
 //this is the filtering logic - whenever you click 'filter', it reads over all chekced boxes and removes then re-adds the newly filtered data to the screen
-document.querySelector('.filterBtn').addEventListener('click', () => {
+document.querySelector('.filterBtn').addEventListener('click', (e) => {
+    e.stopPropagation();
     lakes.clearLayers();
     rivers.clearLayers();
     updateCheckboxStates();
@@ -99,34 +109,61 @@ document.querySelector('.filterBtn').addEventListener('click', () => {
     rivers.addData(fisheries_polyline);
 })
 
-
-/****** INITT ******/
-updateCheckboxStates()
-lakes.addData(fisheries_point);
-rivers.addData(fisheries_polyline);
-
 //NOW setup the filter checkboxes and their states
 //these variables hold the state of whether they're expanded or not
 //first is species, then facilities, then tickets.  To add more filters, just add more 'false's
-const checkState = [false, false, false]
+const checkState = [false, false, false];
 
 //now variables to hold the expanding objects
-var checkBoxes = document.querySelectorAll('.inputContainer')
+//this first piece is the 'drop down menu'
+var checkBoxes = document.querySelectorAll('.inputContainer');
+//this second piece is for all of the buttons themselves for filtering
+var selects = document.querySelectorAll('.selectBox');
   
-function showCheckboxes(idx) { 
+//this function actually expands/unshows the drop down boxes with the checkbox options beneath each filtering button
+function showCheckboxes(idx) {
     if (checkState[idx]) { 
         checkBoxes[idx].style.display = "none"; 
-        checkState[idx] = false; 
+        checkState[idx] = false;
+        selects[idx].style.zIndex = 'auto' 
     } else { 
-        checkBoxes[idx].style.display = "flex"; 
-        checkState[idx] = true; 
+        hideCheckBoxes();
+        checkBoxes[idx].style.display = "flex";
+        checkState[idx] = true;
+        selects[idx].style.zIndex = 1001; 
     } 
-} 
+}
+
+function hideCheckBoxes() {
+  checkBoxes.forEach((ele, idx) => {
+    ele.style.display = 'none';
+    selects[idx].style.zIndex = 'auto';
+  });
+  checkState.fill(false);
+  
+}
 
 //add event handlers for clicking on the filtering buttons (the individual checkbox)
 document.querySelectorAll('.overSelect').forEach((box, idx) => {
-  box.addEventListener('click', () => showCheckboxes(idx))
+  box.addEventListener('click', (e) => {
+    showCheckboxes(idx);
+    e.stopPropagation();
+  })
 });
+
+//stop propogation of clicks on the checkbox menu - this own't have it randomly close when clicking around
+document.querySelectorAll('.inputContainer').forEach(ele => {
+  ele.addEventListener('click', (e) => e.stopPropagation())
+});
+
+//close the menu if you click anywhere on the menu
+document.querySelector('.filterContainer').addEventListener('click', () => {
+  if (checkState.includes(true)) {
+    hideCheckBoxes();
+  }
+})
+
+search.getContainer().onclick = e => { e.stopPropagation(); };
 
 
 /****** INITT ******/
