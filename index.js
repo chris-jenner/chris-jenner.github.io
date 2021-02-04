@@ -39,6 +39,7 @@ const search = new GeoSearch.GeoSearchControl({
   updateMap: true,
   style: 'bar',
   autoClose: true,
+    position: 'topleft'
 });
 map.addControl(search);
 
@@ -119,19 +120,19 @@ const checkState = [false, false, false];
 var checkBoxes = document.querySelectorAll('.inputContainer');
 //this second piece is for all of the buttons themselves for filtering
 var selects = document.querySelectorAll('.selectBox');
-  
+
 //this function actually expands/unshows the drop down boxes with the checkbox options beneath each filtering button
 function showCheckboxes(idx) {
-    if (checkState[idx]) { 
-        checkBoxes[idx].style.display = "none"; 
+    if (checkState[idx]) {
+        checkBoxes[idx].style.display = "none";
         checkState[idx] = false;
-        selects[idx].style.zIndex = 'auto' 
-    } else { 
+        selects[idx].style.zIndex = 'auto'
+    } else {
         hideCheckBoxes();
         checkBoxes[idx].style.display = "flex";
         checkState[idx] = true;
-        selects[idx].style.zIndex = 1001; 
-    } 
+        selects[idx].style.zIndex = 1001;
+    }
 }
 
 function hideCheckBoxes() {
@@ -140,7 +141,7 @@ function hideCheckBoxes() {
     selects[idx].style.zIndex = 'auto';
   });
   checkState.fill(false);
-  
+
 }
 
 //add event handlers for clicking on the filtering buttons (the individual checkbox)
@@ -170,5 +171,3 @@ search.getContainer().onclick = e => { e.stopPropagation(); };
 updateCheckboxStates()
 lakes.addData(fisheries_point);
 rivers.addData(fisheries_polyline);
-
-
