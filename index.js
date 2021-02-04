@@ -5,7 +5,7 @@
 //***********************************
 import fisheries_point from './data/fisheries_point.js';
 import fisheries_polyline from './data/fisheries_polyline.js';
-import tackle_points from './data/tackle_points.js'
+import tackle_points from './data/tackle_points.js';
 
 let checkboxStates = [];
 
