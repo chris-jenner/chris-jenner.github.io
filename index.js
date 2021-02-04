@@ -55,6 +55,34 @@ var shopicon = L.icon({
   popupAnchor: [3,-20]
   });
 
+var lakeicon = L.icon({
+  iconUrl: 'images/fisheries_50px.png',
+  iconSize: [40, 49],
+  iconAnchor: [20,20],
+  popupAnchor: [3,-20]
+  });
+
+var clubicon = L.icon({
+  iconUrl: 'images/clubs_50px.png',
+  iconSize: [40, 49],
+  iconAnchor: [20,20],
+  popupAnchor: [3,-20]
+  });
+
+var coachicon = L.icon({
+  iconUrl: 'images/coaching_50px.png',
+  iconSize: [40, 49],
+  iconAnchor: [20,20],
+  popupAnchor: [3,-20]
+  });
+
+var holidayicon = L.icon({
+  iconUrl: 'images/holiday_50px.png',
+  iconSize: [40, 49],
+  iconAnchor: [20,20],
+  popupAnchor: [3,-20]
+  });
+
   const tackle = L.geoJSON(null, {
     pointToLayer: function(geoJsonPoint, latlng) {
       return L.marker(latlng, {icon: shopicon});
@@ -68,13 +96,6 @@ var shopicon = L.icon({
     let cap_name = layer.feature.properties.name.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
     return `<p>${cap_name}</p><a href="https://${layer.feature.properties.link}" target="_blank">View<a>`;
   }).addTo(map);
-
-var lakeicon = L.icon({
-  iconUrl: 'images/fisheries_50px.png',
-  iconSize: [40, 49],
-  iconAnchor: [20,20],
-  popupAnchor: [3,-20]
-  });
 
 const lakes = L.geoJSON(null, {
   pointToLayer: function(geoJsonPoint, latlng) {
