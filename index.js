@@ -4,7 +4,7 @@
 // This is where we'll import the external data and store them into variables for this file
 //***********************************
 import fisheries_point from './data/fisheries_point.js';
-import fisheries_polyline from './data/fisheries_polyline.js'
+import fisheries_polyline from './data/fisheries_polyline.js';
 import tackle_points from './data/tackle_points.js'
 
 let checkboxStates = [];

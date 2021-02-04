@@ -11,5 +11,4 @@ var tackle_points = {
 ]
 };
 
-
 export default tackle_points;
