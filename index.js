@@ -47,6 +47,13 @@ L.control.zoom({
   position: 'topright'
 }).addTo(map);
 
+var lakeicon = L.icon({
+  iconUrl: 'images/fisheries_50px.png',
+  iconSize: [40, 49],
+  iconAnchor: [20,20],
+  popupAnchor: [3,-20]
+  });
+
 const lakes = L.geoJSON(null, {
   pointToLayer: function(geoJsonPoint, latlng) {
     return L.marker(latlng, {icon: lakeicon});
