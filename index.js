@@ -48,6 +48,9 @@ L.control.zoom({
 }).addTo(map);
 
 const lakes = L.geoJSON(null, {
+  pointToLayer: function(geoJsonPoint, latlng) {
+    return L.marker(latlng, {icon: lakeicon});
+     },
   style: function(feature) {
     return {
       color: feature.properties.color
