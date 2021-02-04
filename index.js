@@ -75,6 +75,9 @@ const lakes = L.geoJSON(null, {
 }).addTo(map);
 
 const rivers = L.geoJSON(null, {
+  pointToLayer: function(geoJsonPoint, latlng) {
+    return L.marker(latlng, {icon: lakeicon});
+     },
   filter: (feature) => {
     if (checkboxStates.length == 0) return true;
     return checkboxStates.every(function(element) {
