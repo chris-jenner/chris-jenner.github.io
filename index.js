@@ -55,7 +55,7 @@ var shopicon = L.icon({
   popupAnchor: [3,-20]
   });
 
-  const lakes = L.geoJSON(null, {
+  const tackle = L.geoJSON(null, {
     pointToLayer: function(geoJsonPoint, latlng) {
       return L.marker(latlng, {icon: shopicon});
        },
