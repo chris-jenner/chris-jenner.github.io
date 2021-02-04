@@ -171,3 +171,13 @@ search.getContainer().onclick = e => { e.stopPropagation(); };
 updateCheckboxStates()
 lakes.addData(fisheries_point);
 rivers.addData(fisheries_polyline);
+
+		var fsControl = L.control.fullscreen();
+		map.addControl(fsControl);
+
+		map.on('enterFullscreen', function(){
+			if(window.console) window.console.log('enterFullscreen');
+		});
+		map.on('exitFullscreen', function(){
+			if(window.console) window.console.log('exitFullscreen');
+		});
