@@ -10,3 +10,6 @@ var tackle_points = {
 { "type": "Feature", "properties": { "id": 5, "name": "Scott Tackle", "url": "http:\/\/www.scott-tackle.co.uk\/" }, "geometry": { "type": "Point", "coordinates": [ -2.508073589516637, 51.477213795570634 ] } }
 ]
 };
+
+
+export default tackle_points;
