@@ -54,6 +54,10 @@
           font-family: 'Rubik', sans-serif !important;
           transition: all 0.25s;
           cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+          /* justify-content: space-evenly; */
       }
 
       /* I added in a quick hover animation for the main filter button - it just grows to 110% size when the mouse is over it.  Feel free to add any other animations here*/
@@ -99,13 +103,23 @@
       }
 
       /* leaflet specific */
+
+      .leaflet-popup-content {
+        display: flex !important;
+        flex-direction: column !important;
+
+      }
+      
       .leaflet-popup-content a {
         /* change this if you want to change the color of the marker popups when clicked */
         /* color: black !important; */
         font-family: 'Rubik' !important;
+        margin: auto !important;
         margin-top: 0 !important;
+        width: 100% !important;
         text-decoration: none;
         line-height: 1 !important;
+        text-align: center !important;
       }
 
       /* this would be for changing anything to do with the marker title, IE 'Boyd Valley Lake' or something similar */
@@ -114,7 +128,8 @@
         font-size: 110% !important;
         font-weight: bold !important;
         margin: 5px 0 !important;
-
+        text-align: center !important;
+        
       }
 
 
@@ -129,6 +144,7 @@
 
       /* this is the actual element that is the filter button for the individual filtering options like species, facilities and ticket type.  You can chagne color, font size, etc. here */
       .selectBox select {
+          appearance: none;
           width: 200px;
           font-weight: bold;
           border-radius: 25px;
@@ -136,6 +152,28 @@
           padding: 10px 0 10px 30px;
           border: none;
           cursor: pointer;
+          /* background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right #ffffff; */
+          /* -webkit-appearance: none; */
+      }
+
+      .selectBox:after {
+        content: '>';
+        font: 20px "Consolas", monospace;
+        font-weight: bold;
+        color: black;
+        -webkit-transform: translate(0, -50%) rotate(90deg);
+        -moz-transform: translate(0, -50%) rotate(90deg);
+        -ms-transform: translate(0, -50%) rotate(90deg);
+        transform: translate(0, -50%) rotate(90deg);
+        right: 20px;
+        /*Adjust for position however you want*/
+        
+        top: 50%;
+        /* transform: translate(0, -50%); */
+        /* padding: 0 0 2px; */
+        
+        position: absolute;
+        pointer-events: cursor;
       }
 
       .overSelect {
@@ -404,7 +442,7 @@
       </div>
       <div class='filterBtnCont'>
         <button type='button' class='filterBtn'>
-          Filter Results
+          Filter Results <img class='filterBtnImg' src='./images/filter.png'>
         </button>
       </div>
     </div>

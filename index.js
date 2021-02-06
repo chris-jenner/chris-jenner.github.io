@@ -156,9 +156,11 @@ document.querySelector('.filterBtn').addEventListener('click', (e) => {
     e.stopPropagation();
     lakes.clearLayers();
     rivers.clearLayers();
+    tackle.clearLayers();
     updateCheckboxStates();
     lakes.addData(fisheries_point);
     rivers.addData(fisheries_polyline);
+    tackle.addData(tackle_points);
 })
 
 //NOW setup the filter checkboxes and their states
@@ -222,28 +224,29 @@ search.getContainer().onclick = e => { e.stopPropagation(); };
 updateCheckboxStates()
 lakes.addData(fisheries_point);
 rivers.addData(fisheries_polyline);
+tackle.addData(tackle_points);
 
-		var fsControl = L.control.fullscreen();
-		map.addControl(fsControl);
+var fsControl = L.control.fullscreen();
+map.addControl(fsControl);
 
-		map.on('enterFullscreen', function(){
-			if(window.console) window.console.log('enterFullscreen');
-		});
-		map.on('exitFullscreen', function(){
-			if(window.console) window.console.log('exitFullscreen');
-		});
+map.on('enterFullscreen', function(){
+  if(window.console) window.console.log('enterFullscreen');
+});
+map.on('exitFullscreen', function(){
+  if(window.console) window.console.log('exitFullscreen');
+});
 
-    function onLocationFound(e) {
-       var radius = e.accuracy / 4;
+function onLocationFound(e) {
+    var radius = e.accuracy / 4;
 
-       L.circle(e.latlng, radius).addTo(map);
-       }
+    L.circle(e.latlng, radius).addTo(map);
+    }
 
-       function onLocationError(e) {
-         alert(e.message);
-       }
+    function onLocationError(e) {
+      alert(e.message);
+    }
 
-       map.on('locationfound', onLocationFound);
-       map.on('locationerror', onLocationError);
+    map.on('locationfound', onLocationFound);
+    map.on('locationerror', onLocationError);
 
-       map.locate({setView: true, maxZoom: 12, timeout: 10000});
+    map.locate({setView: true, maxZoom: 12, timeout: 10000});
