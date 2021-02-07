@@ -23,6 +23,6 @@ var tackle_points = {
 { "type": "Feature", "properties": { "id": 18, "name": "criccieth tackle box", "url": "www.cricciethtacklebox.shop" }, "geometry": { "type": "Point", "coordinates": [ -4.23371955641699, 52.919728048532427 ] } },
 { "type": "Feature", "properties": { "id": 19, "name": "menai kayak angling", "url": "www.angelseybaitandlures.co.uk" }, "geometry": { "type": "Point", "coordinates": [ -4.161922260028414, 53.225094369830799 ] } }
 ]
-};
+}
 
 export default tackle_points;
