@@ -89,7 +89,7 @@ var holidayicon = L.icon({
        },
     }).bindPopup(function(layer) {
     let cap_name = layer.feature.properties.name.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
-    return `<p>${cap_name}</p><a href="https://${layer.feature.properties.shop_url}" target="_blank">View<a>`;
+    return `<p>${cap_name}</p><a href="https://${layer.feature.properties.url}" target="_blank">View<a>`;
   }).addTo(map);
 
 const lakes = L.geoJSON(null, {
