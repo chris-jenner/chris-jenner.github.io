@@ -26,40 +26,51 @@ const search = new GeoSearch.GeoSearchControl({
   updateMap: true,
   style: 'bar',
   autoClose: true,
-    position: 'topleft'
+  position: 'topleft'
 });
 map.addControl(search);
 
 var fsControl = L.control.fullscreen();
 map.addControl(fsControl);
 
-map.on('enterFullscreen', function(){
-  if(window.console) window.console.log('enterFullscreen');
+map.on('enterFullscreen', function() {
+  if (window.console) window.console.log('enterFullscreen');
 });
-map.on('exitFullscreen', function(){
-  if(window.console) window.console.log('exitFullscreen');
+map.on('exitFullscreen', function() {
+  if (window.console) window.console.log('exitFullscreen');
 });
 
 function onLocationFound(e) {
-    var radius = e.accuracy / 4;
+  var radius = e.accuracy / 4;
 
-    L.circle(e.latlng, radius).addTo(map);
-    }
+  L.circle(e.latlng, radius).addTo(map);
+}
 
-    function onLocationError(e) {
-      alert(e.message);
-    }
+function onLocationError(e) {
+  alert(e.message);
+}
 
-    map.on('locationfound', onLocationFound);
-    map.on('locationerror', onLocationError);
+map.on('locationfound', onLocationFound);
+map.on('locationerror', onLocationError);
 
-    map.locate({setView: true, maxZoom: 12, timeout: 10000});
+map.locate({
+  setView: true,
+  maxZoom: 12,
+  timeout: 10000
+});
 
-    const tackle = L.geoJSON(null, {
-      pointToLayer: function(geoJsonPoint, latlng) {
-        return L.marker(latlng, {icon: shopicon});
-         },
-      }).bindPopup(function(layer) {
-      let cap_name = layer.feature.properties.name.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
-      return `<p>${cap_name}</p><a href="http://${layer.feature.properties.url}" target="_blank">View<a>`;
-    }).addTo(map);
+var shopicon = L.icon({
+  iconUrl: 'images/tackleshop_50px.png',
+  iconSize: [40, 49],
+  iconAnchor: [20,20],
+  popupAnchor: [3,-20]
+  });
+
+  const tackle = L.geoJSON(tackle_points, {
+    pointToLayer: function(geoJsonPoint, latlng) {
+      return L.marker(latlng, {icon: shopicon});
+       },
+    }).bindPopup(function(layer) {
+    let cap_name = layer.feature.properties.name.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+    return `<p>${cap_name}</p><a href="http://${layer.feature.properties.url}" target="_blank">View<a>`;
+  }).addTo(map);
