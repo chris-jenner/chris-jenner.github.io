@@ -66,6 +66,26 @@ var holidayicon = L.icon({
   popupAnchor: [3,-20]
   });
 
+
+  var riverstyle = {
+    stroke: true,
+    fillColor: "#b5b5b5",
+    color: "#b5b5b5",
+    weight: 5,
+    opacity: 1,
+    fillOpacity: 0.6
+  };
+
+  const path = L.geoJSON(path_line, {
+    style: pathstyling
+  }).bindPopup(function(layer) {
+
+
+
+
+
+
+
   const tackle = L.geoJSON(tackle_points, {
     pointToLayer: function(geoJsonPoint, latlng) {
       return L.marker(latlng, {icon: shopicon});
@@ -85,9 +105,7 @@ const lakes = L.geoJSON(fisheries_point, {
 }).addTo(map);
 
 const rivers = L.geoJSON(fisheries_polyline, {
-  pointToLayer: function(geoJsonPoint, latlng) {
-    return L.marker(latlng, {icon: lakeicon});
-     },
+  style: riverstyle,
 }).bindPopup(function(layer) {
 	let cap_name = layer.feature.properties.name.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
   return `<p>${cap_name}</p><a href="https://${layer.feature.properties.tfi_url}" target="_blank">View<a>`;
