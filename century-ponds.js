@@ -84,10 +84,10 @@ const lakes = L.geoJSON(fisheries_point, {
   return `<p>${cap_name}</p><a href="http://${layer.feature.properties.tfi_url}" target="_blank">View<a>`;
 }).addTo(map);
 
-const rivers = L.geoJSON(fisheries_point, {
+const rivers = L.geoJSON(fisheries_polyline, {
   pointToLayer: function(geoJsonPoint, latlng) {
     return L.marker(latlng, {icon: lakeicon});
-     },  
+     },
 }).bindPopup(function(layer) {
 	let cap_name = layer.feature.properties.name.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
   return `<p>${cap_name}</p><a href="https://${layer.feature.properties.tfi_url}" target="_blank">View<a>`;
