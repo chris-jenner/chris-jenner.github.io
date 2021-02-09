@@ -68,10 +68,10 @@ var holidayicon = L.icon({
 
   var riverstyle = {
     stroke: true,
-    fillColor: "#b5b5b5",
-    color: "#b5b5b5",
+    fillColor: "#2D558C",
+    color: "#2D558C",
     weight: 5,
-    opacity: 1,
+    opacity: 0.8,
     fillOpacity: 0.6
   };
 
