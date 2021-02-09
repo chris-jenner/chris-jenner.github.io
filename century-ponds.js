@@ -1,4 +1,6 @@
 import fisheries_point from './data/fisheries_point.js';
+import fisheries_polyline from './data/fisheries_polyline.js';
+import tackle_points from './data/tackle_points.js';
 
 var map = L.map("map", {
   center: [51.413795 , -2.5179358],
@@ -29,18 +31,81 @@ map.on('exitFullscreen', function() {
   if (window.console) window.console.log('exitFullscreen');
 });
 
-var fisheryicon = L.icon({
+var shopicon = L.icon({
+  iconUrl: 'images/tackleshop_50px.png',
+  iconSize: [40, 49],
+  iconAnchor: [20,20],
+  popupAnchor: [3,-20]
+  });
+
+var lakeicon = L.icon({
   iconUrl: 'images/fisheries_50px.png',
   iconSize: [40, 49],
   iconAnchor: [20,20],
   popupAnchor: [3,-20]
   });
 
-  const lakes = L.geoJSON(fisheries_point, {
+var clubicon = L.icon({
+  iconUrl: 'images/clubs_50px.png',
+  iconSize: [40, 49],
+  iconAnchor: [20,20],
+  popupAnchor: [3,-20]
+  });
+
+var coachicon = L.icon({
+  iconUrl: 'images/coaching_50px.png',
+  iconSize: [40, 49],
+  iconAnchor: [20,20],
+  popupAnchor: [3,-20]
+  });
+
+var holidayicon = L.icon({
+  iconUrl: 'images/holiday_50px.png',
+  iconSize: [40, 49],
+  iconAnchor: [20,20],
+  popupAnchor: [3,-20]
+  });
+
+  const tackle = L.geoJSON(tackle_points, {
     pointToLayer: function(geoJsonPoint, latlng) {
-      return L.marker(latlng, {icon: fisheryicon});
+      return L.marker(latlng, {icon: shopicon});
        },
     }).bindPopup(function(layer) {
     let cap_name = layer.feature.properties.name.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
-    return `<p>${cap_name}</p><a href="http://${layer.feature.properties.fishery_url}" target="_blank">View<a>`;
+    return `<p>${cap_name}</p><a href="http://${layer.feature.properties.url}" target="_blank">View<a>`;
   }).addTo(map);
+
+const lakes = L.geoJSON(fisheries_point, {
+  pointToLayer: function(geoJsonPoint, latlng) {
+    return L.marker(latlng, {icon: lakeicon});
+     },
+  style: function(feature) {
+    return {
+      color: feature.properties.color
+    };
+  },
+  filter: (feature) => {
+    if (checkboxStates.length == 0) return true;
+    return checkboxStates.every(function(element) {
+      return feature.properties[element.name];
+    });
+  }
+}).bindPopup(function(layer) {
+  let cap_name = layer.feature.properties.name.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+  return `<p>${cap_name}</p><a href="http://${layer.feature.properties.tfi_url}" target="_blank">View<a>`;
+}).addTo(map);
+
+const rivers = L.geoJSON(fisheries_point, {
+  pointToLayer: function(geoJsonPoint, latlng) {
+    return L.marker(latlng, {icon: lakeicon});
+     },
+  filter: (feature) => {
+    if (checkboxStates.length == 0) return true;
+    return checkboxStates.every(function(element) {
+      return feature.properties[element.name];
+    });
+  },
+}).bindPopup(function(layer) {
+	let cap_name = layer.feature.properties.name.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+  return `<p>${cap_name}</p><a href="https://${layer.feature.properties.tfi_url}" target="_blank">View<a>`;
+}).addTo(map);
