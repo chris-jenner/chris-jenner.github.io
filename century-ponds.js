@@ -1,4 +1,4 @@
-import fishery_points from './data/fishery_point.js';
+import fisheries_point from './data/fisheries_point.js';
 
 var map = L.map("map", {
   center: [51.413795 , -2.5179358],
@@ -36,7 +36,7 @@ var fisheryicon = L.icon({
   popupAnchor: [3,-20]
   });
 
-  const lakes = L.geoJSON(fishery_points, {
+  const lakes = L.geoJSON(fisheries_point, {
     pointToLayer: function(geoJsonPoint, latlng) {
       return L.marker(latlng, {icon: fisheryicon});
        },
