@@ -66,7 +66,6 @@ var holidayicon = L.icon({
   popupAnchor: [3,-20]
   });
 
-
   var riverstyle = {
     stroke: true,
     fillColor: "#b5b5b5",
@@ -75,16 +74,6 @@ var holidayicon = L.icon({
     opacity: 1,
     fillOpacity: 0.6
   };
-
-  const path = L.geoJSON(path_line, {
-    style: pathstyling
-  }).bindPopup(function(layer) {
-
-
-
-
-
-
 
   const tackle = L.geoJSON(tackle_points, {
     pointToLayer: function(geoJsonPoint, latlng) {
