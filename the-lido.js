@@ -3,7 +3,7 @@ import fisheries_polyline from './data/fisheries_polyline.js';
 import tackle_points from './data/tackle_points.js';
 
 var map = L.map("map", {
-  center: [51.433548 , -2.4507049],
+  center: [51.473685 , -2.5415996],
   zoom: 16,
   zoomControl: false,
   gestureHandling: true
