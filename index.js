@@ -83,6 +83,15 @@ var holidayicon = L.icon({
   popupAnchor: [3,-20]
   });
 
+  var riverstyle = {
+    stroke: true,
+    fillColor: "#2D558C",
+    color: "#2D558C",
+    weight: 5,
+    opacity: 0.8,
+    fillOpacity: 0.6
+  };
+
   const tackle = L.geoJSON(null, {
     pointToLayer: function(geoJsonPoint, latlng) {
       return L.marker(latlng, {icon: shopicon});
@@ -112,10 +121,8 @@ const lakes = L.geoJSON(null, {
   return `<p>${cap_name}</p><a href="http://${layer.feature.properties.tfi_url}" target="_blank">View<a>`;
 }).addTo(map);
 
-const rivers = L.geoJSON(null, {
-  pointToLayer: function(geoJsonPoint, latlng) {
-    return L.marker(latlng, {icon: lakeicon});
-     },
+const rivers = L.geoJSON(fisheries_polyline, {
+  style: riverstyle,
   filter: (feature) => {
     if (checkboxStates.length == 0) return true;
     return checkboxStates.every(function(element) {
