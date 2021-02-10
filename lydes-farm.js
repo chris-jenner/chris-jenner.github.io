@@ -4,7 +4,7 @@ import tackle_points from './data/tackle_points.js';
 
 var map = L.map("map", {
   center: [51.513333 , -2.3738596],
-  zoom: 17,
+  zoom: 15,
   zoomControl: false,
   gestureHandling: true
 });
