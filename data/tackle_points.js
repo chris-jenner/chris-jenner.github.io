@@ -38,7 +38,11 @@ var tackle_points = {
 { "type": "Feature", "properties": { "id": 33, "name": "fishtec", "url": "www.fishtec.co.uk" }, "geometry": { "type": "Point", "coordinates": [ -3.4103158, 51.9418972 ] } },
 { "type": "Feature", "properties": { "id": 34, "name": "todber manor fisheries", "url": "www.todbermanor.co.uk" }, "geometry": { "type": "Point", "coordinates": [ -2.2838762, 50.9811081 ] } },
 { "type": "Feature", "properties": { "id": 35, "name": "the matchman angling centre", "url": "www.thematchmen.com" }, "geometry": { "type": "Point", "coordinates": [ -1.1928726, 52.9976949 ] } },
-{ "type": "Feature", "properties": { "id": 36, "name": "matchman supplies", "url": "www.matchmansupplies.co.uk" }, "geometry": { "type": "Point", "coordinates": [ -1.1277441, 52.9376098 ] } }
+{ "type": "Feature", "properties": { "id": 36, "name": "matchman supplies", "url": "www.matchmansupplies.co.uk" }, "geometry": { "type": "Point", "coordinates": [ -1.1277441, 52.9376098 ] } },
+{ "type": "Feature", "properties": { "id": 41, "name": "tjs fishing  tackle", "url": "www.tjsfishingtacklesupplies.co.uk" }, "geometry": { "type": "Point", "coordinates": [ -4.796429881794469, 50.33872649094689 ] } },
+{ "type": "Feature", "properties": { "id": 40, "name": "newtown angling centre", "url": "www.newtownangling.com" }, "geometry": { "type": "Point", "coordinates": [ -5.393632864909055, 50.113554416421202 ] } },
+{ "type": "Feature", "properties": { "id": 39, "name": "gwinear angling tackle shop", "url": "www.gwinear.com\/fishing-in-cornwall-newquay" }, "geometry": { "type": "Point", "coordinates": [ -5.088366261552549, 50.380230151435697 ] } },
+{ "type": "Feature", "properties": { "id": 38, "name": "rogers tackle shop", "url": null }, "geometry": { "type": "Point", "coordinates": [ -4.731196554674039, 50.471530321867945 ] } }
 ]
 }
 
