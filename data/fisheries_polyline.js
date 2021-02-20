@@ -1,4 +1,4 @@
-var fisheries_polyline = {
+var fishery_polylines = {
 "type": "FeatureCollection",
 "name": "fisheries_polyline",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
@@ -19,4 +19,4 @@ var fisheries_polyline = {
 }
 
 
-export default fisheries_polyline;
+export default fishery_polylines;

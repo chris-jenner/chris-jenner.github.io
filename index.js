@@ -3,9 +3,12 @@
 // Put these two lines at the very top of you 'index.js' file (or whatever you'd like to name it).
 // This is where we'll import the external data and store them into variables for this file
 //***********************************
-import fisheries_point from './data/fisheries_point.js';
-import fisheries_polyline from './data/fisheries_polyline.js';
+import fishery_points from './data/fishery_points.js';
+import fishery_polylines from './data/fishery_polylines.js';
 import tackle_points from './data/tackle_points.js';
+import clubs_points from './data/clubs_points.js';
+import coaching_points from './data/coaching_points.js';
+import holiday_points from './data/holiday_points.js';
 
 let checkboxStates = [];
 
@@ -92,6 +95,33 @@ var holidayicon = L.icon({
     fillOpacity: 0.6
   };
 
+  const clubs = L.geoJSON(null, {
+    pointToLayer: function(geoJsonPoint, latlng) {
+      return L.marker(latlng, {icon: clubicon});
+       },
+    }).bindPopup(function(layer) {
+    let cap_name = layer.feature.properties.name.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+    return `<p>${cap_name}</p><a href="http://${layer.feature.properties.club_url}" target="_blank">View<a>`;
+  }).addTo(map);
+
+  const coach = L.geoJSON(null, {
+    pointToLayer: function(geoJsonPoint, latlng) {
+      return L.marker(latlng, {icon: coachicon});
+       },
+    }).bindPopup(function(layer) {
+    let cap_name = layer.feature.properties.name.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+    return `<p>${cap_name}</p><a href="http://${layer.feature.properties.url}" target="_blank">View<a>`;
+  }).addTo(map);
+
+  const holiday = L.geoJSON(null, {
+    pointToLayer: function(geoJsonPoint, latlng) {
+      return L.marker(latlng, {icon: holidayicon});
+       },
+    }).bindPopup(function(layer) {
+    let cap_name = layer.feature.properties.name.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+    return `<p>${cap_name}</p><a href="http://${layer.feature.properties.holiday_url}" target="_blank">View<a>`;
+  }).addTo(map);
+
   const tackle = L.geoJSON(null, {
     pointToLayer: function(geoJsonPoint, latlng) {
       return L.marker(latlng, {icon: shopicon});
@@ -164,10 +194,16 @@ document.querySelector('.filterBtn').addEventListener('click', (e) => {
     lakes.clearLayers();
     rivers.clearLayers();
     tackle.clearLayers();
+    clubs.clearLayers();
+    coach.clearLayers();
+    holiday.clearLayers();
     updateCheckboxStates();
-    lakes.addData(fisheries_point);
-    rivers.addData(fisheries_polyline);
+    lakes.addData(fishery_points);
+    rivers.addData(fishery_polylines);
     tackle.addData(tackle_points);
+    clubs.addData(clubs_points);
+    coach.addData(coaching_points);
+    holiday.addData(holiday_points);
 })
 
 //NOW setup the filter checkboxes and their states
@@ -232,6 +268,9 @@ updateCheckboxStates()
 lakes.addData(fisheries_point);
 rivers.addData(fisheries_polyline);
 tackle.addData(tackle_points);
+clubs.addData(clubs_points);
+coach.addData(coaching_points);
+holiday.addData(holiday_points);
 
 var fsControl = L.control.fullscreen();
 map.addControl(fsControl);

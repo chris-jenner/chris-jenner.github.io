@@ -1,4 +1,4 @@
-var fisheries_point = {
+var fishery_points = {
 "type": "FeatureCollection",
 "name": "fisheries_point",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
@@ -16,4 +16,4 @@ var fisheries_point = {
 }
 
 
-export default fisheries_point;
+export default fishery_points;
