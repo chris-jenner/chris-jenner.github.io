@@ -161,7 +161,7 @@ const rivers = L.geoJSON(fishery_polylines, {
   },
 }).bindPopup(function(layer) {
 	let cap_name = layer.feature.properties.name.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
-  return `<p>${cap_name}</p><a href="https://${layer.feature.properties.tfi_url}" target="_blank">View<a>`;
+  return `<p>${cap_name}</p><a href="https://${layer.feature.properties.fishery_url}" target="_blank">View<a>`;
 }).addTo(map);
 
 function updateCheckboxStates() {

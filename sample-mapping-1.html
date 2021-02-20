@@ -11,40 +11,36 @@
     <link rel="stylesheet" href='./index.css'>
     <script src="https://www.jing.fm/clipimg/full/111-1113832_parking-only-sign-png-clipart-blue-parking-sign.png"></script>
 
-    <style>
-      #map {
-        padding: 0px;
-        margin: 0px;
-        height: 900px;
-        width: 100%;
-      }
-
-    </style>
   </head>
 
-  <body>
+  <style>
+    #map {
+      padding: 0px;
+      margin: 0px;
+      height: 900px;
+      width: 100%;
+    }
 
-    <style>
-      body {
-        font-family: 'Rubik';
-        font-size: 12px;
-      }
+     body {
+      font-family: 'Rubik';
+      font-size: 12px;
+    }
 
-      .leaflet-tooltip.my-labels {
-      background-color: transparent;
-      border: transparent;
-      box-shadow: none;
-      font-weight: bold;
-      font-size: 11px;
-      }
+    .leaflet-tooltip.my-labels {
+    background-color: transparent;
+    border: transparent;
+    box-shadow: none;
+    font-weight: bold;
+    font-size: 11px;
+    }
 
-    </style>
+  </style>
 
-    <div id="map"> </div>
+<body>
 
-  </body>
+<div id="map"> </div>
 
-</html>
+<script>
 
 var map = L.map("map", {
   center: [51.377500 , -2.4389970],
@@ -297,3 +293,8 @@ const parking = L.geoJSON(parking_data, {
       return L.marker(latlng, {icon: parkingicon});
        }
 }).addTo(map);
+
+</script>
+
+</body>
+</html>
