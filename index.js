@@ -55,7 +55,7 @@ var shopicon = L.icon({
   iconUrl: 'images/tackleshop_50px.png',
   iconSize: [32, 39],
   iconAnchor: [20,20],
-  popupAnchor: [3,-20]
+  popupAnchor: [-3,-20]
   });
 
 var lakeicon = L.icon({
@@ -69,21 +69,21 @@ var clubicon = L.icon({
   iconUrl: 'images/clubs_50px.png',
   iconSize: [32, 39],
   iconAnchor: [20,20],
-  popupAnchor: [3,-20]
+  popupAnchor: [-3,-20]
   });
 
 var coachicon = L.icon({
   iconUrl: 'images/coaching_50px.png',
   iconSize: [32, 39],
   iconAnchor: [20,20],
-  popupAnchor: [3,-20]
+  popupAnchor: [-3,-20]
   });
 
 var holidayicon = L.icon({
   iconUrl: 'images/holiday_50px.png',
   iconSize: [32, 39],
   iconAnchor: [20,20],
-  popupAnchor: [3,-20]
+  popupAnchor: [-3,-20]
   });
 
   var riverstyle = {
