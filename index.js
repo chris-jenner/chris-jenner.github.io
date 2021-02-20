@@ -265,8 +265,8 @@ search.getContainer().onclick = e => { e.stopPropagation(); };
 
 /****** INITT ******/
 updateCheckboxStates()
-lakes.addData(fisheries_point);
-rivers.addData(fisheries_polyline);
+lakes.addData(fishery_points);
+rivers.addData(fishery_polylines);
 tackle.addData(tackle_points);
 clubs.addData(clubs_points);
 coach.addData(coaching_points);
