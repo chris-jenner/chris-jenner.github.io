@@ -151,7 +151,7 @@ const lakes = L.geoJSON(null, {
   return `<p>${cap_name}</p><a href="http://${layer.feature.properties.tfi_url}" target="_blank">View<a>`;
 }).addTo(map);
 
-const rivers = L.geoJSON(fisheries_polyline, {
+const rivers = L.geoJSON(fishery_polylines, {
   style: riverstyle,
   filter: (feature) => {
     if (checkboxStates.length == 0) return true;
