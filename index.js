@@ -62,7 +62,7 @@ var lakeicon = L.icon({
   iconUrl: 'images/fisheries_50px.png',
   iconSize: [32, 39],
   iconAnchor: [20,20],
-  popupAnchor: [0,-20]
+  popupAnchor: [0,0]
   });
 
 var clubicon = L.icon({
