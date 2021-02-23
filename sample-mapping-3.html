@@ -60,13 +60,12 @@ var BING_KEY = 'AuhiCJHlGzhg93IqUH_oCpl_-ZUrIE6SPftlyGYUvr9Amx5nzA-WqGcPquyFZl4L
 
 var map = L.map("map", {
   center: [51.196033, -2.7629140],
-  zoom: 12,
+  zoom: 5,
   zoomControl: false,
   gestureHandling: true
 });
 
 var bingLayer = L.tileLayer.bing(BING_KEY).addTo(map)
-
 
 var fsControl = L.control.fullscreen();
 map.addControl(fsControl);
@@ -14903,7 +14902,7 @@ L.geoJson(lake_data, {
 }).addTo(map);
 
 map.fitBounds(pegs.getBounds(), {
-  padding: [25, 25]
+  padding: [5, 5]
 });
 
 </script>
