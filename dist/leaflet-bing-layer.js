@@ -70,7 +70,7 @@ L.TileLayer.Bing = L.TileLayer.extend({
     culture: 'en-US',
     minZoom: 1,
     minNativeZoom: 1,
-    maxNativeZoom: 19
+    maxNativeZoom: 17
   },
 
   statics: {
@@ -390,7 +390,7 @@ module.exports = function(bbox1, bbox2){
       throw new Error('polyfill failed because global object is unavailable in this environment');
     }
   }
-  
+
   local.fetchJsonp = fetchJsonp;
   */
 
