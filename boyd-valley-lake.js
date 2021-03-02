@@ -1,5 +1,5 @@
-import fishery_point from './data/fishery_point.js';
-import fisheriy_polyline from './data/fishery_polyline.js';
+import fishery_point from './data/fishery_points.js';
+import fisheriy_polyline from './data/fishery_polylines.js';
 import tackle_points from './data/tackle_points.js';
 
 var map = L.map("map", {
