@@ -1,8 +1,8 @@
 import coaching_points from './data/coaching_points.js';
 
 var map = L.map("map", {
-  center: [50.982749, -2.2832465],
-  zoom: 17,
+  center: [51.396145, -2.5015016],
+  zoom: 11,
   zoomControl: false,
   gestureHandling: true
 });
