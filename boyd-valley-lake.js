@@ -1,5 +1,5 @@
-import fisheries_point from './data/fisheries_point.js';
-import fisheries_polyline from './data/fisheries_polyline.js';
+import fishery_point from './data/fishery_point.js';
+import fisheriy_polyline from './data/fishery_polyline.js';
 import tackle_points from './data/tackle_points.js';
 
 var map = L.map("map", {
@@ -84,7 +84,7 @@ var holidayicon = L.icon({
     return `<p>${cap_name}</p><a href="http://${layer.feature.properties.url}" target="_blank">View<a>`;
   }).addTo(map);
 
-const lakes = L.geoJSON(fisheries_point, {
+const lakes = L.geoJSON(fishery_points, {
   pointToLayer: function(geoJsonPoint, latlng) {
     return L.marker(latlng, {icon: lakeicon});
      },
@@ -93,7 +93,7 @@ const lakes = L.geoJSON(fisheries_point, {
   return `<p>${cap_name}</p><a href="http://${layer.feature.properties.tfi_url}" target="_blank">View<a>`;
 }).addTo(map);
 
-const rivers = L.geoJSON(fisheries_polyline, {
+const rivers = L.geoJSON(fishery_polylines, {
   style: riverstyle,
 }).bindPopup(function(layer) {
 	let cap_name = layer.feature.properties.name.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
