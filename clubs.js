@@ -60,7 +60,7 @@ map.locate({
 });
 
 var shopicon = L.icon({
-  iconUrl: 'images/coaching_50px.png',
+  iconUrl: 'images/clubs_50px.png',
   iconSize: [40, 49],
   iconAnchor: [20,20],
   popupAnchor: [3,-20]
