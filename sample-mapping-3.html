@@ -65,6 +65,8 @@ var map = L.map("map", {
   gestureHandling: true
 });
 
+Attibution = L.control.attribution({prefix: '<span class="AttributionClass">Contains M & B Contour Map Data</span>'}).addTo(map);
+
 var bingLayer = L.tileLayer.bing(BING_KEY).addTo(map)
 
 var fsControl = L.control.fullscreen();
