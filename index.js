@@ -131,11 +131,9 @@ var holidayicon = L.icon({
                  .toUpperCase());
              if (layer.feature.properties.url != null) {
                  return `<p>${cap_name}</p><a href="http://${layer.feature.properties.url}" target="_blank">View<a>`;
-
-             } else {
+              } else {
                  return `<p>${cap_name}</p>`;
-
-             }
+              }
 
          }).addTo(map);
 
