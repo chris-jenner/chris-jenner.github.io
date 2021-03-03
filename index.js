@@ -111,7 +111,7 @@ var holidayicon = L.icon({
      }).bindPopup(function (layer) {
              let cap_name = layer.feature.properties.name.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter
                  .toUpperCase());
-             if (layer.feature.properties.url != null) {
+             if (layer.feature.properties.coach_url != null) {
                  return `<p>${cap_name}</p><a href="http://${layer.feature.properties.coach_url}" target="_blank">View<a>`;
               } else {
                  return `<p>${cap_name}</p>`;
