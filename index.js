@@ -5,7 +5,6 @@
 //***********************************
 import fishery_points from './data/fishery_points.js';
 import fishery_polylines from './data/fishery_polylines.js';
-import fishery_polylines_markers from './data/fishery_polylines.js';
 import tackle_points from './data/tackle_points.js';
 import clubs_points from './data/clubs_points.js';
 import coaching_points from './data/coaching_points.js';
