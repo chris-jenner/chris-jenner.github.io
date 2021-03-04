@@ -176,6 +176,16 @@ const rivers = L.geoJSON(fishery_polylines, {
   return `<p>${cap_name}</p><a href="https://${layer.feature.properties.fishery_url}" target="_blank">View<a>`;
 }).addTo(map);
 
+keynsham_aa.getLayers().forEach((layer)=>{
+  const streetLatLngs = layer.getLatLngs();
+  const middleIndex = Math.round(streetLatLngs[0].length/2);
+  const centerPoint = streetLatLngs[0][middleIndex];
+  const markerIcon = L.marker(centerPoint,{icon: marker}).addTo(map);
+  const cap_name = layer.feature.properties.label.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+  const popup = L.popup().setContent("<p>" + cap_name + "</p><a href='http://" + layer.feature.properties.tfi_url + "' target='_blank'>View<a>");
+  markerIcon.bindPopup(popup);
+});
+
 function updateCheckboxStates() {
   //first reset your object that holds the input checked states
   checkboxStates = [];
