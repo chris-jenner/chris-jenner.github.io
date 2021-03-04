@@ -176,7 +176,7 @@ const rivers = L.geoJSON(fishery_polylines, {
   return `<p>${cap_name}</p><a href="https://${layer.feature.properties.fishery_url}" target="_blank">View<a>`;
 }).addTo(map);
 
-keynsham_aa.getLayers().forEach((layer)=>{
+fishery_polylines.getLayers().forEach((layer)=>{
   const streetLatLngs = layer.getLatLngs();
   const middleIndex = Math.round(streetLatLngs[0].length/2);
   const centerPoint = streetLatLngs[0][middleIndex];
