@@ -130,7 +130,7 @@ var holidayicon = L.icon({
 
   const tackle = L.geoJSON(null, {
     pointToLayer: function(geoJsonPoint, latlng) {
-      return L.marker(latlng, {icon: shopicon});
+      return L.marker(latlng, {icon: lakeicon});
        },
      }).bindPopup(function (layer) {
              let cap_name = layer.feature.properties.name.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter
