@@ -61,7 +61,7 @@ var shopicon = L.icon({
 var lakeicon = L.icon({
   iconUrl: 'images/fisheries_50px.png',
   iconSize: [32, 39],
-  iconAnchor: [30,30],
+  iconAnchor: [20,20],
   popupAnchor: [-3,-20]
   });
 
@@ -145,7 +145,7 @@ var holidayicon = L.icon({
 
 const lakes = L.geoJSON(null, {
   pointToLayer: function(geoJsonPoint, latlng) {
-    //return L.marker(latlng, {icon: lakeicon});
+    return L.marker(latlng, {icon: lakeicon});
      },
   style: function(feature) {
     return {
@@ -163,12 +163,6 @@ const lakes = L.geoJSON(null, {
   return `<p>${cap_name}</p><a href="http://${layer.feature.properties.tfi_url}" target="_blank">View<a>`;
 }).addTo(map);
 
-
-
-
-
-
-
 const rivers = L.geoJSON(fishery_polylines, {
   style: riverstyle,
   filter: (feature) => {
@@ -181,16 +175,6 @@ const rivers = L.geoJSON(fishery_polylines, {
 	let cap_name = layer.feature.properties.name.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
   return `<p>${cap_name}</p><a href="https://${layer.feature.properties.fishery_url}" target="_blank">View<a>`;
 }).addTo(map);
-
-rivers.getLayers().forEach((layer)=>{
-  const streetLatLngs = layer.getLatLngs();
-  const middleIndex = Math.round(streetLatLngs.length/2);
-  const centerPoint = streetLatLngs[middleIndex];
-  const markerIcon = L.marker(centerPoint,{icon: lakeicon}).addTo(map);
-  const cap_name = layer.feature.properties.name.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
-const popup = L.popup().setContent("<p>" + cap_name + "</p><a href='http://" + layer.feature.properties.tfi_url + "' target='_blank'>View<a>");
-markerIcon.bindPopup(popup);
-});
 
 function updateCheckboxStates() {
   //first reset your object that holds the input checked states
