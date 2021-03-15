@@ -70,7 +70,7 @@ L.TileLayer.Bing = L.TileLayer.extend({
     culture: 'en-US',
     minZoom: 1,
     minNativeZoom: 1,
-    maxNativeZoom: 20
+    maxNativeZoom: 22
   },
 
   statics: {
