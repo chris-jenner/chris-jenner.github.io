@@ -72,5 +72,5 @@ var shopicon = L.icon({
        },
     }).bindPopup(function(layer) {
     let cap_name = layer.feature.properties.name.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
-    return `<p>${cap_name}</p><a href="http://${layer.feature.properties.url}" target="_blank">View<a>`;
+    return `<p>${cap_name}</p><a href="http://${layer.feature.properties.club_url}" target="_blank">View<a>`;
   }).addTo(map);
