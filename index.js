@@ -5,10 +5,6 @@
 //***********************************
 import fishery_points from './data/fishery_points.js';
 import fishery_polylines from './data/fishery_polylines.js';
-import tackle_points from './data/tackle_points.js';
-import clubs_points from './data/clubs_points.js';
-import coaching_points from './data/coaching_points.js';
-import holiday_points from './data/holiday_points.js';
 
 let checkboxStates = [];
 
@@ -51,13 +47,6 @@ L.control.zoom({
   position: 'topright'
 }).addTo(map);
 
-var shopicon = L.icon({
-  iconUrl: 'images/tackleshop_50px.png',
-  iconSize: [32, 39],
-  iconAnchor: [20,20],
-  popupAnchor: [-3,-20]
-  });
-
 var lakeicon = L.icon({
   iconUrl: 'images/fisheries_50px.png',
   iconSize: [32, 39],
@@ -65,83 +54,15 @@ var lakeicon = L.icon({
   popupAnchor: [-3,-20]
   });
 
-var clubicon = L.icon({
-  iconUrl: 'images/clubs_50px.png',
-  iconSize: [32, 39],
-  iconAnchor: [20,20],
-  popupAnchor: [-3,-20]
-  });
 
-var coachicon = L.icon({
-  iconUrl: 'images/coaching_50px.png',
-  iconSize: [32, 39],
-  iconAnchor: [20,20],
-  popupAnchor: [-3,-20]
-  });
-
-var holidayicon = L.icon({
-  iconUrl: 'images/holiday_50px.png',
-  iconSize: [32, 39],
-  iconAnchor: [20,20],
-  popupAnchor: [-3,-20]
-  });
-
-  var riverstyle = {
-    stroke: true,
-    fillColor: "#2D558C",
-    color: "#2D558C",
-    weight: 5,
-    opacity: 0.8,
-    fillOpacity: 0.6
-  };
-
-  const clubs = L.geoJSON(null, {
-    pointToLayer: function(geoJsonPoint, latlng) {
-      return L.marker(latlng, {icon: clubicon});
-       },
-    }).bindPopup(function(layer) {
-    let cap_name = layer.feature.properties.name.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
-    return `<p>${cap_name}</p><a href="http://${layer.feature.properties.club_url}" target="_blank">View<a>`;
-  }).addTo(map);
-
-  const coach = L.geoJSON(null, {
-    pointToLayer: function(geoJsonPoint, latlng) {
-      return L.marker(latlng, {icon: coachicon});
-       },
-     }).bindPopup(function (layer) {
-             let cap_name = layer.feature.properties.name.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter
-                 .toUpperCase());
-             if (layer.feature.properties.coach_url != null) {
-                 return `<p>${cap_name}</p><a href="http://${layer.feature.properties.coach_url}" target="_blank">View<a>`;
-              } else {
-                 return `<p>${cap_name}</p>`;
-              }
-
-         }).addTo(map);
-
-  const holiday = L.geoJSON(null, {
-    pointToLayer: function(geoJsonPoint, latlng) {
-      return L.marker(latlng, {icon: holidayicon});
-       },
-    }).bindPopup(function(layer) {
-    let cap_name = layer.feature.properties.name.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
-    return `<p>${cap_name}</p><a href="http://${layer.feature.properties.holiday_url}" target="_blank">View<a>`;
-  }).addTo(map);
-
-  const tackle = L.geoJSON(null, {
-    pointToLayer: function(geoJsonPoint, latlng) {
-      return L.marker(latlng, {icon: shopicon});
-       },
-     }).bindPopup(function (layer) {
-             let cap_name = layer.feature.properties.name.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter
-                 .toUpperCase());
-             if (layer.feature.properties.url != null) {
-                 return `<p>${cap_name}</p><a href="http://${layer.feature.properties.url}" target="_blank">View<a>`;
-              } else {
-                 return `<p>${cap_name}</p>`;
-              }
-
-         }).addTo(map);
+var riverstyle = {
+  stroke: true,
+  fillColor: "#2D558C",
+  color: "#2D558C",
+  weight: 5,
+  opacity: 0.8,
+  fillOpacity: 0.6
+};
 
 const lakes = L.geoJSON(null, {
   pointToLayer: function(geoJsonPoint, latlng) {
