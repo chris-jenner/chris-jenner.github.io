@@ -1,6 +1,6 @@
-var clubs_points = {
+{
 "type": "FeatureCollection",
-"name": "clubs_point",
+"name": "clubs_points",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 "features": [
 { "type": "Feature", "properties": { "id": 1, "name": "betws-y-coed angling club", "tfi_url": null, "club_url": "www.betws-y-coed-anglers.org", "contact_no": null, "email": "keynshamangling@gmail.com" }, "geometry": { "type": "Point", "coordinates": [ -3.822715885145238, 53.092785606343668 ] } },
@@ -33,5 +33,3 @@ var clubs_points = {
 { "type": "Feature", "properties": { "id": 28, "name": "south manchester angling club", "tfi_url": null, "club_url": "www.southmanchesteranglingclub.co.uk", "contact_no": "07949 649370", "email": "bodminanglers@outlook.com" }, "geometry": { "type": "Point", "coordinates": [ -2.541839569031418, 53.411336641941475 ] } }
 ]
 }
-
-export default clubs_points;
