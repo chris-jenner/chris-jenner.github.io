@@ -126,18 +126,10 @@ document.querySelector('.filterBtn').addEventListener('click', (e) => {
     e.stopPropagation();
     lakes.clearLayers();
     rivers.clearLayers();
-    tackle.clearLayers();
-    clubs.clearLayers();
-    coach.clearLayers();
-    holiday.clearLayers();
     updateCheckboxStates();
     lakes.addData(fishery_points);
     rivers.addData(fishery_polylines);
-    tackle.addData(tackle_points);
-    clubs.addData(clubs_points);
-    coach.addData(coaching_points);
-    holiday.addData(holiday_points);
-})
+    })
 
 //NOW setup the filter checkboxes and their states
 //these variables hold the state of whether they're expanded or not
@@ -200,10 +192,6 @@ search.getContainer().onclick = e => { e.stopPropagation(); };
 updateCheckboxStates()
 lakes.addData(fishery_points);
 rivers.addData(fishery_polylines);
-tackle.addData(tackle_points);
-clubs.addData(clubs_points);
-coach.addData(coaching_points);
-holiday.addData(holiday_points);
 
 var fsControl = L.control.fullscreen();
 map.addControl(fsControl);
