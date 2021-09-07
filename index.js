@@ -49,9 +49,9 @@ L.control.zoom({
 
 var lakeicon = L.icon({
   iconUrl: 'images/fisheries_50px.png',
-  iconSize: [32, 39],
+  iconSize: [40, 49],
   iconAnchor: [20,20],
-  popupAnchor: [-3,-20]
+  popupAnchor: [3,-20]
   });
 
 
