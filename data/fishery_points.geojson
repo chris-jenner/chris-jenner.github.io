@@ -1,4 +1,4 @@
-var fishery_points = {
+{
 "type": "FeatureCollection",
 "name": "fishery_points",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
@@ -35,6 +35,3 @@ var fishery_points = {
 { "type": "Feature", "properties": { "gid": 32, "name": "stafford moor fishery", "tfi_url": "thefishingindex.com\/stafford-moor-fishery\/", "fishery_url": "www.staffordmoor.co.uk\/", "coarse_fishery": true, "carp_fishery": true, "game_fishery": false, "sea_fishery": false, "barbel": false, "barbel_4lb": false, "barbel_8lb": false, "bream": true, "bream_4lb": true, "bream_7lb": false, "brown_trout": false, "brown_trout_5lb": false, "brown_trout_10lb": false, "carp": true, "carp_10lb": true, "carp_20lb": true, "carp_30lb": true, "carp_40lb": false, "catfish": false, "catfish_10lb": false, "catfish_20lb": false, "catfish_30lb": false, "catfish_40lb": false, "chub": false, "chub_3lb": false, "chub_5lb": false, "crucian_carp": true, "crucian_carp_2lb": false, "dace": false, "dace_1lb": false, "eel": true, "eel_3lb": true, "grass_carp": false, "grayling": false, "gudgeon": false, "perch": true, "perch_1lb": true, "perch_2lb": true, "pike": false, "pike_10lb": false, "pike_20lb": false, "rainbow_trout": false, "rainbow_trout_5lb": false, "rainbow_trout_10lb": false, "roach": true, "roach_1lb": true, "roach_2lb": true, "rudd": true, "rudd_1lb": true, "rudd_2lb": false, "ruffe": false, "tench": true, "tench_4lb": true, "tench_6lb": false, "zander": false, "zander_5lb": false, "accomodation": false, "cafe": false, "camping": false, "electric_points": false, "accessible_pegs": false, "fishing_lodges": true, "tackle_shop": true, "toilets": true, "parking": true, "pet_friendly": true, "day_ticket": true, "free_fishing": false, "membership": false, "night_fishing": true }, "geometry": { "type": "Point", "coordinates": [ -3.998908950680759, 50.883114416396964 ] } }
 ]
 }
-
-
-export default fishery_points;
