@@ -47,6 +47,15 @@ L.control.zoom({
   position: 'topright'
 }).addTo(map);
 
+var altText = {}
+altText.toString = function () {
+      return ''
+}
+
+altText.valueOf = function () {
+    return true
+}
+
 var lakeicon = L.icon({
   iconUrl: 'images/fisheries_50px.png',
   iconSize: [30, 37],
@@ -66,7 +75,7 @@ var riverstyle = {
 
 const lakes = L.geoJSON(null, {
   pointToLayer: function(geoJsonPoint, latlng) {
-    return L.marker(latlng, {icon: lakeicon});
+    return L.marker(latlng, {icon: lakeicon}, { alt: altText });
      },
   style: function(feature) {
     return {
