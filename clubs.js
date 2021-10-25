@@ -61,7 +61,7 @@ map.locate({
 
 var shopicon = L.icon({
   iconUrl: 'images/clubs_50px.png',
-  iconSize: [40, 49],
+  iconSize: [30, 37],
   iconAnchor: [20,20],
   popupAnchor: [3,-20]
   });
