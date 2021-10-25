@@ -75,7 +75,7 @@ var riverstyle = {
 
 const lakes = L.geoJSON(null, {
   pointToLayer: function(geoJsonPoint, latlng) {
-    return L.marker(latlng, {icon: lakeicon}, { alt: altText });
+    return L.marker(latlng, {icon: lakeicon}, {alt: altText });
      },
   style: function(feature) {
     return {
