@@ -49,7 +49,7 @@ L.control.zoom({
 
 var altText = {}
 altText.toString = function () {
-      return ''
+      return 'map marker'
 }
 
 altText.valueOf = function () {
