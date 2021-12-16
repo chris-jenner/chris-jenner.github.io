@@ -1,4 +1,4 @@
-var tackle_points = {
+{
 "type": "FeatureCollection",
 "name": "tackle_points",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
@@ -948,5 +948,3 @@ var tackle_points = {
 { "type": "Feature", "properties": { "fid": 943, "name": "total fishing tackle", "email": "info@totalfishingtackle.com", "tfi_url": "www.total-fishing-tackle.com", "url": "www.total-fishing-tackle.com", "number": null }, "geometry": { "type": "Point", "coordinates": [ 0.3200584, 51.7650531 ] } }
 ]
 }
-
-export default tackle_points;
